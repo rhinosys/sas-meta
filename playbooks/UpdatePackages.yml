@@ -1,0 +1,29 @@
+---
+- hosts: CM-Tools-Server 
+  vars_files:
+  - env_variables
+
+  tasks:
+    - name: Remove Package lib postgresql
+      yum:
+        name: postgresql-libs
+        installroot: /cm/images/{{ images_name }}/
+        state: absent
+    - name: Install package for postgresql
+      vars:
+        packages:
+          - postgresql-devel.x86_64
+          - poppler.x86_64 
+      yum:
+        name: "{{ packages }}"
+        #disablerepo: "epel,ol7_latest"
+        installroot: /cm/images/{{ images_name }}/
+    - name: Install R - WISE - 3.5.3
+      vars:
+        packages3_5_3:
+          - /Sources/Software/Microsoft/Ropen/src/microsoft-r-open-3.5.3/microsoft-r-open/rpm/rhel/microsoft-r-open-mro-3.5.3.rpm
+          - /Sources/Software/Microsoft/Ropen/src/microsoft-r-open-3.5.3/microsoft-r-open/rpm/rhel/microsoft-r-open-mkl-3.5.3.rpm
+      yum:
+        name: "{{ packages3_5_3 }}"
+        installroot: /cm/images/{{ images_name }}/
+      

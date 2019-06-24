@@ -1,0 +1,4 @@
+---
+- import_playbook: playbooks/prerequisites.yml
+- import_playbook: playbooks/UpdatePackages.yml
+#- import_playbook: playbooks/UpdateSecurity.yml
