@@ -4,11 +4,6 @@
   - env_variables
 
   tasks:
-    - name: Remove Package lib postgresql
-      yum:
-        name: postgresql-libs
-        installroot: /cm/images/{{ images_name }}/
-        state: removed
     - name: Install package for postgresql
       vars:
         packages:
@@ -19,22 +14,3 @@
         #disablerepo: "epel,ol7_latest"
         installroot: /cm/images/{{ images_name }}/
 
-    - name: Install R - WISE - 3.5.1
-      vars:
-        packages3_5_1:
-          - /Sources/Software/Microsoft/Ropen/src/microsoft-r-open-3.5.1/microsoft-r-open/rpm/microsoft-r-open-mro-3.5.1.rpm
-          - /Sources/Software/Microsoft/Ropen/src/microsoft-r-open-3.5.1/microsoft-r-open/rpm/microsoft-r-open-foreachiterators-3.5.1.rpm
-          - /Sources/Software/Microsoft/Ropen/src/microsoft-r-open-3.5.1/microsoft-r-open/rpm/microsoft-r-open-mkl-3.5.1.rpm
-      yum:
-        name: "{{ packages3_5_1 }}"
-        installroot: /cm/images/{{ images_name }}/
-
-    - name: Install R - WISE - 3.5.3
-      vars:
-        packages3_5_3:
-          - /Sources/Software/Microsoft/Ropen/src/microsoft-r-open-3.5.3/microsoft-r-open/rpm/rhel/microsoft-r-open-mro-3.5.3.rpm
-          - /Sources/Software/Microsoft/Ropen/src/microsoft-r-open-3.5.3/microsoft-r-open/rpm/rhel/microsoft-r-open-mkl-3.5.3.rpm
-      yum:
-        name: "{{ packages3_5_3 }}"
-        installroot: /cm/images/{{ images_name }}/
-      
