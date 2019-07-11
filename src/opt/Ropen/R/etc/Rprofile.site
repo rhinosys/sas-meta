@@ -1,0 +1,8 @@
+local({
+  r <- getOption("repos")
+  r["CRAN"] <- "http://cran.pharma.aventis.com/"
+  options(repos = r)
+})
+options(RSTUDIO_DISABLE_SECURE_DOWNLOAD_WARNING=1)
+source ("~/.Rprofile")
+

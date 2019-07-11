@@ -1,0 +1,16 @@
+auth       sufficient     pam_centrifydc.so
+auth       requisite      pam_centrifydc.so deny
+account    sufficient     pam_centrifydc.so
+account    requisite      pam_centrifydc.so deny
+session    required       pam_centrifydc.so homedir
+password   sufficient     pam_centrifydc.so try_first_pass
+password   requisite      pam_centrifydc.so deny
+
+auth include system-auth
+auth optional pam_mount.so use_first_pass
+account required pam_unix.so
+# Session (read environment variables and enforce limits)
+session required pam_env.so readenv=1
+session required pam_env.so readenv=1 envfile=/etc/default/locale
+session required pam_limits.so
+#

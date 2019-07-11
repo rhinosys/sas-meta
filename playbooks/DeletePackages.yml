@@ -1,0 +1,18 @@
+---
+- hosts: CM-Tools-Server 
+  vars_files:
+  - env_variables
+
+  tasks:
+    - name: Remove Package lib postgresql
+      yum:
+        name: postgresql-libs
+        installroot: /cm/images/{{ images_name }}/
+        state: removed
+
+    - name: Remove Package rstudio-server 
+      yum:
+        name: rstudio-server 
+        installroot: /cm/images/{{ images_name }}/
+        state: removed
+

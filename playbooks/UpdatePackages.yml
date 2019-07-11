@@ -22,4 +22,13 @@
          name: "{{ packagesRstudio }}"
          installroot: /cm/images/{{ images_name }}/
 
+    - name: Copy file /etc/pam.d/rstudio
+      copy:
+         src: /cm/shared/apps/UpdateImages/Scenario/R/IDE/src/pam.d/rstudio
+         dest: /cm/images/{{ images_name }}/etc/pam.d/rstudio
+         backup: yes
+         owner: root
+         group: root
+         mode: '0644'
+
 

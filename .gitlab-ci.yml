@@ -1,0 +1,34 @@
+image: docker:latest
+services:
+  - docker:dind
+
+stages:
+  - test
+  - deploy
+
+
+step-test-dev:
+  stage: test
+  before_script:
+    - export DYNAMIC_ENV_VAR=DEV
+  only:
+    - master
+  tags:
+    - master
+  script:
+    - echo running tests in $DYNAMIC_ENV_VAR
+
+step-deploy-dev:
+  stage: test
+  before_script:
+    - export DYNAMIC_ENV_VAR=DEV
+  only:
+    - master
+  tags:
+    - master
+  script:
+    - echo running DEPLOY in $DYNAMIC_ENV_VAR
+    - sudo ansible-playbook UpdateImages.yml --extra-vars "ENV=DEV"
+    - sudo ansible-playbook UpdateImages.yml --extra-vars "ENV=UAT"
+    - sudo ansible-playbook UpdateImages.yml --extra-vars "ENV=PROD"
+  #when: manual
