@@ -1,5 +1,5 @@
 ---
-- hosts: R-BATCH-{{ ENV }}
+- hosts: R-IDE-{{ ENV }}
   vars_files:
   - env_variables
 
