@@ -28,7 +28,24 @@ step-deploy-dev:
     - master
   script:
     - echo running DEPLOY in $DYNAMIC_ENV_VAR
-    - sudo ansible-playbook UpdateImages.yml --extra-vars "ENV=DEV"
-    - sudo ansible-playbook UpdateImages.yml --extra-vars "ENV=UAT"
-    - sudo ansible-playbook UpdateImages.yml --extra-vars "ENV=PROD"
-  #when: manual
+    - export
+    - env
+    - sudo ansible-playbook UpdateImages.yml
+  when: manual
+
+step-Copy-File-R:
+  stage: test
+  before_script:
+    - export DYNAMIC_ENV_VAR=DEV
+  only:
+    - master
+  when: manual
+
+  tags:
+    - master
+  script:
+    - echo running DEPLOY in $DYNAMIC_ENV_VAR
+    - export
+    - env
+    - echo running CI_INPUT_ZONEENV in $CI_INPUT_ZONEENV
+    - sudo ansible-playbook playbooks/CopyFileRlocal.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
