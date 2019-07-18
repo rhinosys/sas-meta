@@ -4,10 +4,9 @@
   - env_variables
 
   tasks:
-    - name: Remove Package lib postgresql
+
+    - name: Remove Package rstudio-server 
       yum:
-        name: postgresql-libs
+        name: rstudio-server 
         installroot: /cm/images/{{ images_name }}/
         state: removed
-
-

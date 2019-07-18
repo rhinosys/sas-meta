@@ -1,0 +1,23 @@
+---
+- hosts: CM-Tools-Server 
+  vars_files:
+  - env_variables
+
+  tasks:
+
+    - name: Install R - RSTUDIO - 1.2.1335 
+      vars:
+         packagesRstudio:
+           - /Sources/Software/rstudio/rstudio-server/rstudio-server-rhel-pro-1.2.1335-1-x86_64.rpm 
+      yum:
+         name: "{{ packagesRstudio }}"
+         installroot: /cm/images/{{ images_name }}/
+
+    - name: Copy file /etc/pam.d/rstudio
+      copy:
+         src: /cm/shared/apps/UpdateImages/Scenario/R/IDE/src/pam.d/rstudio
+         dest: /cm/images/{{ images_name }}/etc/pam.d/rstudio
+         backup: yes
+         owner: root
+         group: root
+         mode: '0644'

@@ -30,7 +30,9 @@ step-deploy-dev:
     - echo running DEPLOY in $DYNAMIC_ENV_VAR
     - export
     - env
-    - sudo ansible-playbook UpdateImages.yml
+    - sudo ansible-playbook UpdateImages.yml --extra-vars "ENV=DEV CI_PROJECT_DIR=$CI_PROJECT_DIR"
+    - sudo ansible-playbook UpdateImages.yml --extra-vars "ENV=UAT CI_PROJECT_DIR=$CI_PROJECT_DIR"
+    - sudo ansible-playbook UpdateImages.yml --extra-vars "ENV=PROD CI_PROJECT_DIR=$CI_PROJECT_DIR"
   when: manual
 
 step-Copy-File-R:

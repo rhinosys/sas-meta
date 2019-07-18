@@ -14,21 +14,13 @@
         #disablerepo: "epel,ol7_latest"
         installroot: /cm/images/{{ images_name }}/
 
-    - name: Install R - RSTUDIO - 1.2.1335 
+    - name: Install package for magick
       vars:
-         packagesRstudio:
-           - /Sources/Software/rstudio/rstudio-server/rstudio-server-rhel-pro-1.2.1335-1-x86_64.rpm 
+        packages:
+          - ImageMagick-c++.x86_64
       yum:
-         name: "{{ packagesRstudio }}"
-         installroot: /cm/images/{{ images_name }}/
-
-    - name: Copy file /etc/pam.d/rstudio
-      copy:
-         src: /cm/shared/apps/UpdateImages/Scenario/R/IDE/src/pam.d/rstudio
-         dest: /cm/images/{{ images_name }}/etc/pam.d/rstudio
-         backup: yes
-         owner: root
-         group: root
-         mode: '0644'
+        name: "{{ packages }}"
+        #disablerepo: "epel,ol7_latest"
+        installroot: /cm/images/{{ images_name }}/
 
 
