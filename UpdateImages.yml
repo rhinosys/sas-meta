@@ -1,8 +1,9 @@
 ---
 - import_playbook: playbooks/prerequisites.yml
 - import_playbook: playbooks/DeletePackages.yml
+- import_playbook: playbooks/DeletePackages-R.yml
 - import_playbook: playbooks/UpdatePackages.yml
 - import_playbook: playbooks/UpdatePackages-R.yml
-- import_playbook: playbooks/DeletePackages-ide.yml
-- import_playbook: playbooks/UpdatePackages-ide.yml
+#- import_playbook: playbooks/DeletePackages-ide.yml
+#- import_playbook: playbooks/UpdatePackages-ide.yml
 #- import_playbook: playbooks/UpdateSecurity.yml
