@@ -10,4 +10,14 @@
         installroot: /cm/images/{{ images_name }}/
         state: removed
 
-
+    - name: Remove Package lib java-1.8.0-openjdk-devel
+      yum:
+        name: java-1.8.0-openjdk-devel
+        installroot: /cm/images/{{ images_name }}/
+        state: removed
+        
+    - name: Remove Package lib java-1.8.0-openjdk
+      yum:
+        name: java-1.8.0-openjdk
+        installroot: /cm/images/{{ images_name }}/
+        state: removed

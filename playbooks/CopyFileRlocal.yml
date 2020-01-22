@@ -1,14 +1,32 @@
 ---
-- hosts: R-IDE-{{ ENV }}
+- hosts: CM-Tools-Server
   vars_files:
   - env_variables
 
   tasks:
+    - name: Install - Create Profile.d/wise.sh 
+      copy:
+        src: "{{ CI_PROJECT_DIR }}/src/etc/profile.d/wise.sh"
+        dest: /cm/images/{{ images_name }}/etc/profile.d/wise.sh
+        backup: no
+        owner: root
+        group: root
+        mode: '0755'
+
+    - name: Install - Create /etc/rc.d/rc.local
+      copy:
+        src: "{{ CI_PROJECT_DIR }}/src/etc/rc.local"
+        dest: /cm/images/{{ images_name }}/etc/rc.d/rc.local
+        backup: no
+        owner: root
+        group: root
+        mode: '0755'
+
     - name: Install R - WISE - 3.3.3 - Copy file /R/etc
       copy:
         src: "{{ CI_PROJECT_DIR }}/src/opt/Ropen/R/etc"
-        dest: /usr/lib64/microsoft-r/3.3/lib64/R/etc
-        backup: yes
+        dest: /cm/images/{{ images_name }}/usr/lib64/microsoft-r/3.3/lib64/R/etc
+        backup: no
         owner: root
         group: root
         mode: '0644'
@@ -16,8 +34,8 @@
     - name: Install R - WISE - 3.4.0 - Copy file /R/etc
       copy:
         src: "{{ CI_PROJECT_DIR }}/src/opt/Ropen/R/etc"
-        dest: /usr/lib64/microsoft-r/3.4/lib64/R/etc
-        backup: yes
+        dest: /cm/images/{{ images_name }}/usr/lib64/microsoft-r/3.4/lib64/R/etc
+        backup: no
         owner: root
         group: root
         mode: '0644'
@@ -25,8 +43,8 @@
     - name: Copy file /R/etc - Install R - WISE - 3.4.1
       copy:
          src: "{{ CI_PROJECT_DIR }}/src/opt/Ropen/R/etc"
-         dest: /opt/microsoft/ropen/3.4.1/lib64/R/etc
-         backup: yes
+         dest: /cm/images/{{ images_name }}/opt/microsoft/ropen/3.4.1/lib64/R/etc
+         backup: no
          owner: root
          group: root
          mode: '0644'
@@ -34,8 +52,8 @@
     - name: Copy file /R/etc - Install R - WISE - 3.4.2
       copy:
          src: "{{ CI_PROJECT_DIR }}/src/opt/Ropen/R/etc"
-         dest: /opt/microsoft/ropen/3.4.2/lib64/R/etc
-         backup: yes
+         dest: /cm/images/{{ images_name }}/opt/microsoft/ropen/3.4.2/lib64/R/etc
+         backup: no
          owner: root
          group: root
          mode: '0644'
@@ -43,8 +61,8 @@
     - name: Copy file /R/etc - Install R - WISE - 3.4.3
       copy:
          src: "{{ CI_PROJECT_DIR }}/src/opt/Ropen/R/etc"
-         dest: /opt/microsoft/ropen/3.4.3/lib64/R/etc
-         backup: yes
+         dest: /cm/images/{{ images_name }}/opt/microsoft/ropen/3.4.3/lib64/R/etc
+         backup: no
          owner: root
          group: root
          mode: '0644'
@@ -53,8 +71,8 @@
     - name: Copy file /R/etc - Install R - WISE - 3.5.1
       copy:
          src: "{{ CI_PROJECT_DIR }}/src/opt/Ropen/R/etc"
-         dest: /opt/microsoft/ropen/3.5.1/lib64/R/etc
-         backup: yes
+         dest: /cm/images/{{ images_name }}/opt/microsoft/ropen/3.5.1/lib64/R/etc
+         backup: no
          owner: root
          group: root
          mode: '0644'
@@ -63,8 +81,8 @@
       copy:
          #src: /cm/shared/apps/UpdateImages/Scenario/R/{{TYPE_WISE_MODULE}}/src/opt/Ropen/R/etc
          src: "{{ CI_PROJECT_DIR }}/src/opt/Ropen/R/etc"
-         dest: /opt/microsoft/ropen/3.5.3/lib64/R/etc
-         backup: yes
+         dest: /cm/images/{{ images_name }}/opt/microsoft/ropen/3.5.3/lib64/R/etc
+         backup: no
          owner: root
          group: root
          mode: '0644'

@@ -1,0 +1,116 @@
+---
+- hosts: CM-Tools-Server 
+  vars_files:
+  - env_variables
+
+# ##################################
+# # Clean System  
+# ##################################
+
+  tasks:
+    - name: Clean - Profile.d/wise.sh 
+      file: 
+          path: /cm/images/{{ images_name }}/etc/profile.d/wise.sh
+          state: absent
+
+    - name: Clean - /etc/rc.d/rc.local
+      file:
+          path: /cm/images/{{ images_name }}/etc/rc.d/rc.local
+          state: absent
+
+# ##################################
+# # Clean dist R 3.3.0
+# ##################################
+    - name: "Clean R - WISE - 3.3.0 -  file DIST/R/etc List glob"
+      file:
+        path: /cm/images/{{ images_name }}/usr/lib64/microsoft-r/3.3/lib64/R/etc
+        state: absent
+
+    - name: "Clean R - WISE - 3.3.0 -  file DIST/R/library List glob"
+      file:
+        path: /cm/images/{{ images_name }}/usr/lib64/microsoft-r/3.3/lib64/R/library
+        state: absent 
+
+# ##################################
+# # Clean dist R 3.4.0
+# ##################################
+
+    - name: Clean R - WISE - 3.4.0 -  file DIST/R/etc List glob
+      file:
+        path: /cm/images/{{ images_name }}/usr/lib64/microsoft-r/3.4/lib64/R/etc
+        state: absent
+
+    - name: Clean R - WISE - 3.4.0 -  file DIST/R/library List glob
+      file:
+        path: /cm/images/{{ images_name }}/usr/lib64/microsoft-r/3.4/lib64/R/library
+        state: absent
+
+# ##################################
+# # Clean dist R 3.4.1
+# ##################################
+
+    - name: Clean R - WISE - 3.4.1 -  file DIST/R/etc List glob
+      file:
+        path: /cm/images/{{ images_name }}/usr/lib64/microsoft-r/3.4.1/lib64/R/etc
+        state: absent
+
+    - name: Clean R - WISE - 3.4.1 -  file DIST/R/library List glob
+      file:
+        path: /cm/images/{{ images_name }}/usr/lib64/microsoft-r/3.4.1/lib64/R/library
+        state: absent
+
+# ##################################
+# # Clean dist R 3.4.2
+# ##################################
+
+    - name: Clean R - WISE - 3.4.2 -  file DIST/R/etc List glob
+      file:
+        path: /cm/images/{{ images_name }}/usr/lib64/microsoft-r/3.4.2/lib64/R/etc
+        state: absent
+
+    - name: Clean R - WISE - 3.4.2 -  file DIST/R/library List glob
+      file:
+        path: /cm/images/{{ images_name }}/usr/lib64/microsoft-r/3.4.2/lib64/R/library
+        state: absent
+
+# ##################################
+# # Clean dist R 3.4.3
+# ##################################
+
+    - name: Clean R - WISE - 3.4.3 -  file DIST/R/etc List glob
+      file:
+        path: /cm/images/{{ images_name }}/usr/lib64/microsoft-r/3.4.3/lib64/R/etc
+        state: absent
+
+    - name: Clean R - WISE - 3.4.3 -  file DIST/R/library List glob
+      file:
+        path: /cm/images/{{ images_name }}/usr/lib64/microsoft-r/3.4.3/lib64/R/library
+        state: absent
+
+# ##################################
+# # Clean dist R 3.5.1
+# ##################################
+
+    - name: Clean R - WISE - 3.5.1 -  file DIST/R/etc List glob
+      file:
+        path: /cm/images/{{ images_name }}/usr/lib64/microsoft-r/3.5.1/lib64/R/etc
+        state: absent
+
+    - name: Clean R - WISE - 3.5.1 -  file DIST/R/library List glob
+      file:
+        path: /cm/images/{{ images_name }}/usr/lib64/microsoft-r/3.5.1/lib64/R/library
+        state: absent
+
+# ##################################
+# # Clean dist R 3.5.3
+# ##################################
+
+    - name: Clean R - WISE - 3.5.3 -  file DIST/R/etc List glob
+      file:
+        path: /cm/images/{{ images_name }}/usr/lib64/microsoft-r/3.5.3/lib64/R/etc
+        state: absent
+
+    - name: Clean R - WISE - 3.5.3 -  file DIST/R/library List glob
+      file:
+        path: /cm/images/{{ images_name }}/usr/lib64/microsoft-r/3.5.3/lib64/R/library
+        state: absent

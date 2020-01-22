@@ -3,23 +3,13 @@ services:
   - docker:dind
 
 stages:
-  - test
-  - deploy
+  - CleanImages
+  - ConstructImages
+  #- ConfigImages
+  - CopyIntoImages
 
-
-step-test-dev:
-  stage: test
-  before_script:
-    - export DYNAMIC_ENV_VAR=DEV
-  only:
-    - master
-  tags:
-    - master
-  script:
-    - echo running tests in $DYNAMIC_ENV_VAR
-
-step-deploy-dev:
-  stage: test
+Software_Dist:
+  stage: CleanImages
   before_script:
     - export DYNAMIC_ENV_VAR=DEV
   only:
@@ -30,13 +20,52 @@ step-deploy-dev:
     - echo running DEPLOY in $DYNAMIC_ENV_VAR
     - export
     - env
-    #- sudo ansible-playbook UpdateImages.yml --extra-vars "ENV=DEV CI_PROJECT_DIR=$CI_PROJECT_DIR"
-    #- sudo ansible-playbook UpdateImages.yml --extra-vars "ENV=UAT CI_PROJECT_DIR=$CI_PROJECT_DIR"
-    - sudo ansible-playbook UpdateImages.yml --extra-vars "ENV=PROD CI_PROJECT_DIR=$CI_PROJECT_DIR"
+    - sudo ansible-playbook playbooks/DeletePackages.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
+    - sudo ansible-playbook playbooks/DeletePackages-R.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
+    - sudo ansible-playbook playbooks/CleanFileDist.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
+    - sudo ansible-playbook playbooks/DeletePackages-ide.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
+    
   when: manual
 
-step-Copy-File-R:
-  stage: test
+
+Software-Dist:
+  stage: ConstructImages
+  before_script:
+    - export DYNAMIC_ENV_VAR=DEV
+  only:
+    - master
+  tags:
+    - master
+  script:
+    - echo running DEPLOY in $DYNAMIC_ENV_VAR
+    - export
+    - env
+    - sudo ansible-playbook playbooks/UpdatePackages.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
+    - sudo ansible-playbook playbooks/UpdatePackages-R.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
+    - sudo ansible-playbook playbooks/UpdatePackages-ide.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
+  when: manual
+
+
+# Config_Images:
+#   stage: ConfigImages
+#   before_script:
+#     - export DYNAMIC_ENV_VAR=DEV
+#   only:
+#     - master
+
+#   #when: always
+
+#   tags:
+#     - master
+#   script:
+#     - echo running DEPLOY in $DYNAMIC_ENV_VAR
+#     - export
+#     - env
+#     - echo running CI_INPUT_ZONEENV in $CI_INPUT_ZONEENV
+#     - sudo ansible-playbook playbooks/R-JavaConf.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
+
+Add_File_Into_Images:
+  stage: CopyIntoImages
   before_script:
     - export DYNAMIC_ENV_VAR=DEV
   only:
@@ -51,3 +80,5 @@ step-Copy-File-R:
     - env
     - echo running CI_INPUT_ZONEENV in $CI_INPUT_ZONEENV
     - sudo ansible-playbook playbooks/CopyFileRlocal.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
+    - sudo ansible-playbook playbooks/CreateSymbolicLink.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
+  

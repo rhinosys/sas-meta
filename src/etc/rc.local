@@ -1,0 +1,68 @@
+#!/bin/bash
+# THIS FILE IS ADDED FOR COMPATIBILITY PURPOSES
+#
+# It is highly advisable to create own systemd services or udev rules
+# to run scripts during boot instead of using this file.
+#
+# In contrast to previous versions due to parallel execution during boot
+# this script will NOT be run after all other services.
+#
+# Please note that you must run 'chmod +x /etc/rc.d/rc.local' to ensure
+# that this script will be executed during boot.
+echo "Start Rc.local " > /tmp/rc.local.log
+touch /var/lock/subsys/local >> /tmp/rc.local.log
+mount /cm/shared >> /tmp/rc.local.log
+sleep 30 
+echo "Start Rc.local " >> /tmp/rc.local.log
+if [ `/usr/bin/adinfo >/dev/null; echo $?` -eq 10 ]
+  then
+    echo "Start Add computer into AD  " >> /tmp/rc.local.log
+    cp /cm/shared/apps/Centrify/SRC/krb5/krb5.conf /etc/krb5.conf  >> /tmp/rc.local.log 2>&1
+    cp /cm/shared/apps/Centrify/conf/svc_centrify_adjoin.keytab /tmp/svc_centrify_adjoin.keytab >> /tmp/rc.local.log 2>&1 
+    /usr/share/centrifydc/kerberos/bin/kinit -k -t /tmp/svc_centrify_adjoin.keytab  svc_centrify_adjoin >> /tmp/rc.local.log 2>&1
+    adjoin --force --container "OU=Unix Servers,OU=Servers,OU=ZZ NGDC EMEA,DC=pharma,DC=aventis,DC=com" --zone "CN=EMEA,CN=Unix Zones,OU=ZZ NGDC EMEA,DC=pharma,DC=aventis,DC=com" --name `uname -n | cut -d. -f1` pharma.aventis.com >> /tmp/rc.local.log 2>&1
+    sleep 30 >> /tmp/rc.local.log 2>&1
+    DOMAINCONTROLLER=$(adinfo --server) >> /tmp/rc.local.log 2>&1
+    COMPUTEROBJECTNAME=$(uname -n | cut -d. -f1) >> /tmp/rc.local.log 2>&1
+    GROUP="Centrify_EMEA_WISE_PRD_CompRole" >> /tmp/rc.local.log 2>&1
+    /cm/shared/apps/Centrify/sh/add_to_AD_group.sh -c ${COMPUTEROBJECTNAME} -d ${DOMAINCONTROLLER} -g "${GROUP}" >> /tmp/rc.local.log 2>&1
+    GROUP="Centrify_EMEA_WISE_UAT_CompRole" >> /tmp/rc.local.log 2>&1
+    /cm/shared/apps/Centrify/sh/add_to_AD_group.sh -c ${COMPUTEROBJECTNAME} -d ${DOMAINCONTROLLER} -g "${GROUP}" >> /tmp/rc.local.log 2>&1
+    GROUP="Centrify_EMEA_WISE_DEV_CompRole" >> /tmp/rc.local.log 2>&1
+    /cm/shared/apps/Centrify/sh/add_to_AD_group.sh -c ${COMPUTEROBJECTNAME} -d ${DOMAINCONTROLLER} -g "${GROUP}" >> /tmp/rc.local.log 2>&1
+    GROUP="Centrify_EMEA_UNIXSASStagProdTrainServers_CompRole" >> /tmp/rc.local.log 2>&1
+    /cm/shared/apps/Centrify/sh/add_to_AD_group.sh -c ${COMPUTEROBJECTNAME} -d ${DOMAINCONTROLLER} -g "${GROUP}" >> /tmp/rc.local.log 2>&1
+    /usr/share/centrifydc/kerberos/bin/kdestroy >> /tmp/rc.local.log 2>&1
+    rm /tmp/svc_centrify_adjoin.keytab >> /tmp/rc.local.log 2>&1
+else
+    echo "Start add computer name into group without adding computer into AD" >> /tmp/rc.local.log 2>&1
+    cp /cm/shared/apps/Centrify/SRC/krb5/krb5.conf /etc/krb5.conf >> /tmp/rc.local.log 2>&1
+    cp /cm/shared/apps/Centrify/conf/svc_centrify_adjoin.keytab /tmp/svc_centrify_adjoin.keytab >> /tmp/rc.local.log 2>&1
+    /usr/share/centrifydc/kerberos/bin/kinit -k -t /tmp/svc_centrify_adjoin.keytab  svc_centrify_adjoin >> /tmp/rc.local.log 2>&1
+    sleep 30 >> /tmp/rc.local.log 2>&1
+    DOMAINCONTROLLER=$(adinfo --server) >> /tmp/rc.local.log 2>&1
+    COMPUTEROBJECTNAME=$(uname -n | cut -d. -f1) >> /tmp/rc.local.log 2>&1
+    GROUP="Centrify_EMEA_WISE_PRD_CompRole" >> /tmp/rc.local.log 2>&1
+    /cm/shared/apps/Centrify/sh/add_to_AD_group.sh -c ${COMPUTEROBJECTNAME} -d ${DOMAINCONTROLLER} -g "${GROUP}" >> /tmp/rc.local.log 2>&1
+    GROUP="Centrify_EMEA_WISE_UAT_CompRole" >> /tmp/rc.local.log 2>&1
+    /cm/shared/apps/Centrify/sh/add_to_AD_group.sh -c ${COMPUTEROBJECTNAME} -d ${DOMAINCONTROLLER} -g "${GROUP}" >> /tmp/rc.local.log 2>&1
+    GROUP="Centrify_EMEA_WISE_DEV_CompRole" >> /tmp/rc.local.log 2>&1
+    /cm/shared/apps/Centrify/sh/add_to_AD_group.sh -c ${COMPUTEROBJECTNAME} -d ${DOMAINCONTROLLER} -g "${GROUP}" >> /tmp/rc.local.log 2>&1
+    GROUP="Centrify_EMEA_UNIXSASStagProdTrainServers_CompRole" >> /tmp/rc.local.log 2>&1
+    /cm/shared/apps/Centrify/sh/add_to_AD_group.sh -c ${COMPUTEROBJECTNAME} -d ${DOMAINCONTROLLER} -g "${GROUP}" >> /tmp/rc.local.log 2>&1
+
+    /usr/share/centrifydc/kerberos/bin/kdestroy >> /tmp/rc.local.log 2>&1
+    rm /tmp/svc_centrify_adjoin.keytab >> /tmp/rc.local.log 2>&1
+fi
+service centrifydc restart >> /tmp/rc.local.log 2>&1
+adflush >> /tmp/rc.local.log 2>&1
+
+/opt/microsoft/ropen/3.4.1/lib64/R/bin/R CMD javareconf -e  >> /tmp/rc.local.log 2>&1
+/opt/microsoft/ropen/3.4.2/lib64/R/bin/R CMD javareconf -e  >> /tmp/rc.local.log 2>&1
+/opt/microsoft/ropen/3.4.3/lib64/R/bin/R CMD javareconf -e  >> /tmp/rc.local.log 2>&1
+/usr/lib64/microsoft-r/3.3/lib64/R/bin/R CMD javareconf -e  >> /tmp/rc.local.log 2>&1 
+/usr/lib64/microsoft-r/3.4/lib64/R/bin/R CMD javareconf -e  >> /tmp/rc.local.log 2>&1
+/opt/microsoft/ropen/3.5.1/lib64/R/bin/R CMD javareconf -e  >> /tmp/rc.local.log 2>&1
+/opt/microsoft/ropen/3.5.3/lib64/R/bin/R CMD javareconf -e  >> /tmp/rc.local.log 2>&1
+
+
