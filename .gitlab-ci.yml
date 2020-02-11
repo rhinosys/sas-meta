@@ -22,8 +22,11 @@ Software_Dist:
     - env
     - sudo ansible-playbook playbooks/DeletePackages.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
     - sudo ansible-playbook playbooks/DeletePackages-R.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
+    - sudo ansible-playbook playbooks/DeleteDocker.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
     - sudo ansible-playbook playbooks/CleanFileDist.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
-    - sudo ansible-playbook playbooks/DeletePackages-ide.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
+    - sudo ansible-playbook playbooks/DeleteSystemFile.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
+
+    
     
   when: manual
 
@@ -40,9 +43,11 @@ Software-Dist:
     - echo running DEPLOY in $DYNAMIC_ENV_VAR
     - export
     - env
+    - sudo ansible-playbook playbooks/CopySystemFile.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
     - sudo ansible-playbook playbooks/UpdatePackages.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
     - sudo ansible-playbook playbooks/UpdatePackages-R.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
-    - sudo ansible-playbook playbooks/UpdatePackages-ide.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
+    - sudo ansible-playbook playbooks/UpdatePackage-Docker.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
+    - sudo ansible-playbook playbooks/CopyFileDocker.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
   when: manual
 
 
@@ -70,7 +75,6 @@ Add_File_Into_Images:
     - export DYNAMIC_ENV_VAR=DEV
   only:
     - master
-  when: manual
 
   tags:
     - master
@@ -81,4 +85,5 @@ Add_File_Into_Images:
     - echo running CI_INPUT_ZONEENV in $CI_INPUT_ZONEENV
     - sudo ansible-playbook playbooks/CopyFileRlocal.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
     - sudo ansible-playbook playbooks/CreateSymbolicLink.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
+  when: manual
   

@@ -8,7 +8,7 @@
     - name: Install R - RSTUDIO - 1.2.1335 
       vars:
          packagesRstudio:
-           - /Sources/Software/rstudio/rstudio-server/rstudio-server-rhel-pro-1.2.1335-1-x86_64.rpm 
+           - /Sources/Software/rstudio/rstudio-server/{{ rstudio_version_rpm }}.rpm 
       yum:
          name: "{{ packagesRstudio }}"
          installroot: /cm/images/{{ images_name }}/

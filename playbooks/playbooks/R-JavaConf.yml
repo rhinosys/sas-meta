@@ -1,0 +1,71 @@
+---
+- hosts: CM-Tools-Server 
+  vars_files:
+  - env_variables
+
+  tasks:
+    - name: "JavaUpdateConf - R - WISE - 3.3.3"
+      vars: 
+        javareconf_3_3_3: /usr/lib64/microsoft-r/3.3/lib64/R/bin/R CMD javareconf
+      environment:
+        PATH: "/cm/images/{{ images_name }}/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.232.b09-0.el7_7.x86_64/jre/bin:{{ ansible_env.PATH }}" 
+        JAVA_HOME: /cm/images/{{ images_name }}/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.232.b09-0.el7_7.x86_64
+        LD_LIBRARY_PATH: /cm/images/{{ images_name }} /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.232.b09-0.el7_7.x86_64/lib:{{ ansible_env.LD_LIBRARY_PATH}}
+      command: " /cm/images/{{ images_name }}{{ javareconf_3_3_3 }}"
+        
+
+    - name: "JavaUpdateConf - R - WISE - 3.4.0"
+      vars: 
+        javareconf_3_4_0: /usr/lib64/microsoft-r/3.4/lib64/R/bin/R CMD javareconf
+      environment: 
+        PATH: "/cm/images/{{ images_name }}/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.232.b09-0.el7_7.x86_64/jre/bin:{{ ansible_env.PATH }}"
+        JAVA_HOME: /cm/images/{{ images_name }}/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.232.b09-0.el7_7.x86_64
+        LD_LIBRARY_PATH: /cm/images/{{ images_name }} /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.232.b09-0.el7_7.x86_64/lib:{{ ansible_env.LD_LIBRARY_PATH}} 
+      command: " /cm/images/{{ images_name }}{{ javareconf_3_4_0 }}"
+    
+    - name: "JavaUpdateConf - R - WISE - 3.4.1"
+      vars: 
+        javareconf_3_4_1: /opt/microsoft/ropen/3.4.1/lib64/R/bin/R CMD javareconf
+      environment: 
+        PATH: "/cm/images/{{ images_name }}/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.232.b09-0.el7_7.x86_64/jre/bin:{{ ansible_env.PATH }}"
+        JAVA_HOME: /cm/images/{{ images_name }}/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.232.b09-0.el7_7.x86_64
+        LD_LIBRARY_PATH: /cm/images/{{ images_name }} /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.232.b09-0.el7_7.x86_64/lib:{{ ansible_env.LD_LIBRARY_PATH}}
+      command: " /cm/images/{{ images_name }}{{ javareconf_3_4_1 }}"
+        
+    - name: "JavaUpdateConf - R - WISE - 3.4.2"
+      vars: 
+        javareconf_3_4_2: /opt/microsoft/ropen/3.4.2/lib64/R/bin/R CMD javareconf
+      environment:
+        PATH: "/cm/images/{{ images_name }}/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.232.b09-0.el7_7.x86_64/jre/bin:{{ ansible_env.PATH }}" 
+        JAVA_HOME: /cm/images/{{ images_name }}/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.232.b09-0.el7_7.x86_64
+        LD_LIBRARY_PATH: /cm/images/{{ images_name }} /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.232.b09-0.el7_7.x86_64/lib:{{ ansible_env.LD_LIBRARY_PATH}}
+      command: " /cm/images/{{ images_name }}{{ javareconf_3_4_2 }}"
+        
+    - name: "JavaUpdateConf - R - WISE - 3.4.3"
+      vars: 
+        javareconf_3_4_3: /opt/microsoft/ropen/3.4.3/lib64/R/bin/R CMD javareconf
+      environment: 
+        PATH: "/cm/images/{{ images_name }}/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.232.b09-0.el7_7.x86_64/jre/bin:{{ ansible_env.PATH }}"
+        JAVA_HOME: /cm/images/{{ images_name }}/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.232.b09-0.el7_7.x86_64
+        LD_LIBRARY_PATH: /cm/images/{{ images_name }} /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.232.b09-0.el7_7.x86_64/lib:{{ ansible_env.LD_LIBRARY_PATH}}
+      command: " /cm/images/{{ images_name }}{{ javareconf_3_4_3 }}"
+        
+
+    - name: "JavaUpdateConf - R - WISE - 3.5.1"
+      vars: 
+        javareconf_3_5_1: /opt/microsoft/ropen/3.5.1/lib64/R/bin/R CMD javareconf
+      environment: 
+        PATH: "/cm/images/{{ images_name }}/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.232.b09-0.el7_7.x86_64/jre/bin:{{ ansible_env.PATH }}"
+        JAVA_HOME: /cm/images/{{ images_name }}/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.232.b09-0.el7_7.x86_64
+        LD_LIBRARY_PATH: /cm/images/{{ images_name }} /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.232.b09-0.el7_7.x86_64/lib:{{ ansible_env.LD_LIBRARY_PATH}}
+      command: " /cm/images/{{ images_name }}{{ javareconf_3_5_1 }}"
+      
+    - name: "JavaUpdateConf - R - WISE - 3.5.3"
+      vars: 
+        javareconf_3_5_3: /opt/microsoft/ropen/3.5.3/lib64/R/bin/R CMD javareconf
+      environment: 
+        PATH: "/cm/images/{{ images_name }}/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.232.b09-0.el7_7.x86_64/jre/bin:{{ ansible_env.PATH }}"
+        JAVA_HOME: /cm/images/{{ images_name }}/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.232.b09-0.el7_7.x86_64
+        LD_LIBRARY_PATH: /cm/images/{{ images_name }} /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.232.b09-0.el7_7.x86_64/lib:{{ ansible_env.LD_LIBRARY_PATH}}
+      command: " /cm/images/{{ images_name }}{{ javareconf_3_5_3 }}"
+        

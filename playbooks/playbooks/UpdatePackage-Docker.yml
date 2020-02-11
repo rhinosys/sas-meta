@@ -1,0 +1,19 @@
+---
+- hosts: CM-Tools-Server 
+  vars_files:
+  - env_variables
+
+  tasks:
+    - name: Install DOCKER
+      vars:
+        packages_docker:
+          - docker
+          - device-mapper-libs 
+          - device-mapper-event-libs
+
+      yum:
+        name: "{{ packages_docker }}"
+        #enablerepo: "{{ repos_docker_list }}"
+        enablerepo: rhel-7-server-rpms,rhel-7-server-extras-rpms,rhel-7-server-optional-rpms
+        installroot: /cm/images/{{ images_name }}/
+        state: latest

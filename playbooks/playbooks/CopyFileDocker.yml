@@ -1,0 +1,41 @@
+---
+- hosts: CM-Tools-Server
+  vars_files:
+  - env_variables
+
+  tasks:
+############################################################
+# DOCKER REPOS
+############################################################
+
+
+    - name: Creates directory - /cm/images/{{ images_name }}/src/etc/containers
+      file:
+          path: /cm/images/{{ images_name }}/src/etc/containers
+          state: directory
+          owner: root
+          group: root
+          mode: 0755
+
+   
+    - name: Copy file /cm/images/{{ images_name }}/src/etc/containers/registries.conf - Copy file -
+      copy:
+         src: "{{ CI_PROJECT_DIR }}/src/etc/containers/registries.conf"
+         dest: /cm/images/{{ images_name }}/etc/containers/registries.conf
+         backup: no
+         owner: root
+         group: root
+         mode: '0644' 
+      
+    - name: Copy file /cm/images/{{ images_name }}/src/usr/lib/systemd/system/docker.service - Copy file -
+      copy:
+         src: "{{ CI_PROJECT_DIR }}/src/usr/lib/systemd/system/docker.service"
+         dest: /cm/images/{{ images_name }}/usr/lib/systemd/system/docker.service
+         backup: no
+         owner: root
+         group: root
+         mode: '0644'
+
+
+
+

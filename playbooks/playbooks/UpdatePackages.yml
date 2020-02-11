@@ -1,0 +1,41 @@
+---
+- hosts: CM-Tools-Server 
+  vars_files:
+  - env_variables
+
+  tasks:
+    - name: Install package for postgresql
+      vars:
+        packages:
+          - postgresql-devel.x86_64
+          - poppler.x86_64 
+      yum:
+        name: "{{ packages }}"
+        #disablerepo: "epel,ol7_latest"
+        installroot: /cm/images/{{ images_name }}/
+
+    - name: Install package for magick
+      vars:
+        packages:
+          - ImageMagick-c++.x86_64
+      yum:
+        name: "{{ packages }}"
+        #disablerepo: "epel,ol7_latest"
+        installroot: /cm/images/{{ images_name }}/
+  
+    - name: Install package for java-1.8.0-openjdk
+      vars:
+        packages:
+          - java-1.8.0-openjdk
+      yum:
+        name: "{{ packages }}"
+        installroot: /cm/images/{{ images_name }}/
+
+    - name: Install package for java-1.8.0-openjdk-devel
+      vars:
+        packages:
+          - java-1.8.0-openjdk-devel
+      yum:
+        name: "{{ packages }}"
+        installroot: /cm/images/{{ images_name }}/
+

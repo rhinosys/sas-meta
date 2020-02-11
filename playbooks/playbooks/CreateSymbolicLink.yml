@@ -1,0 +1,74 @@
+---
+- hosts: CM-Tools-Server
+  vars_files:
+  - env_variables
+
+  tasks:
+    - name: Install R - WISE - 3.3.3 - Create Link Fortrant 
+      file:
+        src: /usr/lib/gcc/x86_64-redhat-linux/4.8.2/libgfortran.so 
+        dest: /cm/images/{{ images_name }}/usr/lib64/microsoft-r/3.3/lib64/R/lib/libgfortran.so.3 
+        owner: root
+        group: root
+        state: link
+        force: yes
+
+    - name: Install R - WISE - 3.4.0 - Create Link Fortrant 
+      file:
+        src: /usr/lib/gcc/x86_64-redhat-linux/4.8.2/libgfortran.so
+        dest: /cm/images/{{ images_name }}/usr/lib64/microsoft-r/3.4/lib64/R/lib/libgfortran.so.3
+        owner: root
+        group: root
+        state: link
+        force: yes
+
+    - name:  Install R - WISE - 3.4.1 - Create Link Fortrant
+      file:
+        src: /usr/lib/gcc/x86_64-redhat-linux/4.8.2/libgfortran.so
+        dest: /cm/images/{{ images_name }}/opt/microsoft/ropen/3.4.1/lib64/R/lib/libgfortran.so.3
+        backup: no
+        owner: root
+        group: root
+        state: link
+        force: yes
+
+    - name:  Install R - WISE - 3.4.2 - Create Link Fortrant
+      file:
+        src: /usr/lib/gcc/x86_64-redhat-linux/4.8.2/libgfortran.so
+        dest: /cm/images/{{ images_name }}/opt/microsoft/ropen/3.4.2/lib64/R/lib/libgfortran.so.3
+        backup: no
+        owner: root
+        group: root
+        state: link
+        force: yes
+
+    - name:  Install R - WISE - 3.4.3 - Create Link Fortrant
+      file:
+        src: /usr/lib/gcc/x86_64-redhat-linux/4.8.2/libgfortran.so
+        dest: /cm/images/{{ images_name }}/opt/microsoft/ropen/3.4.3/lib64/R/lib/libgfortran.so.3
+        backup: no
+        owner: root
+        group: root
+        state: link
+        force: yes
+
+
+    - name:  Install R - WISE - 3.5.1 - Create Link Fortrant
+      file:
+        src: /usr/lib/gcc/x86_64-redhat-linux/4.8.2/libgfortran.so
+        dest: /cm/images/{{ images_name }}/opt/microsoft/ropen/3.5.1/lib64/R/lib/libgfortran.so.3
+        backup: no
+        owner: root
+        group: root
+        state: link
+        force: yes
+
+    - name:  Install R - WISE - 3.5.3 - Create Link Fortrant
+      file:
+        src: /usr/lib/gcc/x86_64-redhat-linux/4.8.2/libgfortran.so
+        dest: /cm/images/{{ images_name }}/opt/microsoft/ropen/3.5.3/lib64/R/lib/libgfortran.so.3
+        backup: no
+        owner: root
+        group: root
+        state: link
+        force: yes
