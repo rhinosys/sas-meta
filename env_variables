@@ -3,5 +3,5 @@
 ###################################################################################
 # Dont Edit these below values, 
 images_name: IMG-R-IDE-V.1.4.0-{{ ENV }} 
-rstudio_version_rpm=rstudio-server-rhel-pro-1.2.5033-1-x86_64
+rstudio_version_rpm:rstudio-server-rhel-pro-1.2.5033-1-x86_64
 ###################################################################################
