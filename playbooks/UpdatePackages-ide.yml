@@ -5,7 +5,7 @@
 
   tasks:
 
-    - name: Install R - RSTUDIO - 1.2.1335 
+    - name: Install R - RSTUDIO - {{ rstudio_version_rpm }}
       vars:
          packagesRstudio:
            - /Sources/Software/rstudio/rstudio-server/{{ rstudio_version_rpm }}.rpm 
