@@ -114,3 +114,15 @@
       file:
         path: /cm/images/{{ images_name }}/usr/lib64/microsoft-r/3.5.3/lib64/R/library
         state: absent
+
+
+# ##################################
+# # Clean Docker REPOS
+# ##################################
+
+    - name: Clean R - REPOS -  file /etc/yum.repos.d/cm-docker/
+      file:
+        path: /cm/images/{{ images_name }}/etc/yum.repos.d/cm-docker/
+        state: absent
+
+
