@@ -54,8 +54,6 @@ else
     /usr/share/centrifydc/kerberos/bin/kdestroy>> /tmp/rc.local.log 2>&1
     rm /tmp/svc_centrify_adjoin.keytab>> /tmp/rc.local.log 2>&1
 fi
-service centrifydc restart>> /tmp/rc.local.log 2>&1
-adflush>> /tmp/rc.local.log 2>&1
 
 /opt/microsoft/ropen/3.4.1/lib64/R/bin/R CMD javareconf  >> /tmp/rc.local.log 2>&1
 /opt/microsoft/ropen/3.4.2/lib64/R/bin/R CMD javareconf  >> /tmp/rc.local.log 2>&1
@@ -65,4 +63,13 @@ adflush>> /tmp/rc.local.log 2>&1
 /opt/microsoft/ropen/3.5.1/lib64/R/bin/R CMD javareconf  >> /tmp/rc.local.log 2>&1
 /opt/microsoft/ropen/3.5.3/lib64/R/bin/R CMD javareconf  >> /tmp/rc.local.log 2>&1
 
+
+service centrifydc restart >> /tmp/rc.local.log 2>&1
+adflush >> /tmp/rc.local.log 2>&1
+cp /Sources/Software/rstudio/rstudio-server/CustomLogo/logo001.png /usr/lib/rstudio-server/www/images/logo.png
+rstudio-server restart
+. /cm/local/apps/environment-modules/3.2.10/Modules/init/bash
+module load shared  >> /tmp/rc.local.log 2>&1
+module load cm-jupyterhub/0.8.1  >> /tmp/rc.local.log 2>&1
+cd /etc/jupyterhub;/usr/bin/nohup /cm/shared/apps/jupyterhub/0.8.1/bin/jupyterhub > /tmp/jupyterhub.log 2>&1 &
 
