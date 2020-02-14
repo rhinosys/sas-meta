@@ -23,4 +23,4 @@
          mode: '0644'
 
     - name: RENAME - /cm/images/{{ images_name }}/etc/rstudio
-       command: creates=" mv /cm/images/{{ images_name }}/etc/rstudio /cm/images/{{ images_name }}/etc/rstudio.old
+       command: " mv /cm/images/{{ images_name }}/etc/rstudio /cm/images/{{ images_name }}/etc/rstudio.old
