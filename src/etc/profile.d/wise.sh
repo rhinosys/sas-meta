@@ -1,7 +1,7 @@
 #!/bin/sh
-. /R/pss/lsf/conf/profile.lsf
-. /R/pss/lsf/conf/lsf.conf
-. /opt/pac/lsfsuite/ext/profile.platform
+#. /R/pss/lsf/conf/profile.lsf
+#. /R/pss/lsf/conf/lsf.conf
+#. /opt/pac/lsfsuite/ext/profile.platform
 
 export PATH=$PATH:/usr/lib/jvm/java/bin:/usr/lib/jvm/jre-openjdk/bin
 export JAVA_HOME=/usr/lib/jvm/jre-openjdk
