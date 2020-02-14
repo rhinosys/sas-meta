@@ -1,0 +1,10 @@
+---
+- hosts: CM-Tools-Server 
+  vars_files:
+  - env_variables
+
+  tasks:
+    - name: Clean - /cm/images/{{ images_name }}/src/etc/yum/vars/releasever
+      file: 
+          path: /cm/images/{{ images_name }}/src/etc/yum/vars/releasever
+          state: absent

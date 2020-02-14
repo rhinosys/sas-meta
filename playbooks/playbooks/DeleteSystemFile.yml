@@ -4,7 +4,7 @@
   - env_variables
 
   tasks:
-    - name: Clean - /cm/images/{{ images_name }}/src/etc/yum/vars/releasever
+    - name: Clean - /cm/images/{{ images_name }}/src/etc/etc/pam.d/rstudio
       file: 
-          path: /cm/images/{{ images_name }}/src/etc/yum/vars/releasever
+          path: /cm/images/{{ images_name }}/src/etc/etc/pam.d/rstudio
           state: absent
