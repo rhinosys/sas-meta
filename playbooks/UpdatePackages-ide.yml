@@ -23,4 +23,4 @@
          mode: '0644'
 
     - name: RENAME - /cm/images/{{ images_name }}/etc/rstudio
-      shell: /bin/rm -rf /cm/images/{{ images_name }}/etc/rstudio.old
+      shell: /bin/rm -rf /cm/images/{{ images_name }}/etc/rstudio
