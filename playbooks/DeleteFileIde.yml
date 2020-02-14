@@ -1,0 +1,14 @@
+---
+- hosts: CM-Tools-Server 
+  vars_files:
+  - env_variables
+
+# ##################################
+# # Clean System  
+# ##################################
+
+  tasks:
+    - name: Clean - /etc/pam.d/rstudio 
+      file: 
+          path: /cm/images/{{ images_name }}/etc/pam.d/rstudio
+          state: absent

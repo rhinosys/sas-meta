@@ -1,0 +1,14 @@
+---
+- hosts: CM-Tools-Server
+  vars_files:
+  - env_variables
+
+  tasks:
+    - name: Install - Create /etc/pam.d/rstudio 
+      copy:
+        src: "{{ CI_PROJECT_DIR }}/src/etc/pam.d/rstudio"
+        dest: /cm/images/{{ images_name }}/etc/pam.d/rstudio
+        backup: no
+        owner: root
+        group: root
+        mode: '0755'
