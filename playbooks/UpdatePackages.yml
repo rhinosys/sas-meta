@@ -42,7 +42,7 @@
     - name: Install - cm-ml-distdeps.x86_64
       vars:
          packagesRstudio:
-           - ccm-ml-distdeps.x86_64
+           - cm-ml-distdeps.x86_64
       yum:
          name: "{{ packagesRstudio }}"
          installroot: /cm/images/{{ images_name }}/
