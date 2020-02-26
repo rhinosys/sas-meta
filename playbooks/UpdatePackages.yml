@@ -38,6 +38,31 @@
       yum:
         name: "{{ packages }}"
         installroot: /cm/images/{{ images_name }}/
-    
+
+    - name: Install package blas-3.4.2-8.el7.x86_64v
+      vars:
+        packages:
+          - blas-3.4.2-8.el7.x86_64
+      yum:
+        name: "{{ packages }}"
+        installroot: /cm/images/{{ images_name }}/
+
+    - name: Install package lapack.x86_64
+      vars:
+        packages:
+          - lapack.x86_64
+      yum:
+        name: "{{ packages }}"
+        installroot: /cm/images/{{ images_name }}/    
+
+    - name: Install Rjags 
+      vars:
+         packagesRjags:
+           - /Sources/Software/Jags/jags4-4.3.0-67.1.x86_64.rpm 
+           - /Sources/Software/Jags/jags4-devel-4.3.0-67.1.x86_64.rpm 
+      yum:
+         name: "{{ packagesRjags }}"
+         installroot: /cm/images/{{ images_name }}/
+
 
 

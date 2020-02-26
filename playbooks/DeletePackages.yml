@@ -21,3 +21,15 @@
         name: java-1.8.0-openjdk
         installroot: /cm/images/{{ images_name }}/
         state: removed
+
+    - name: Uninstall Rjags
+      vars:
+         packagesRjags:
+           -  jags4-devel
+           -  jags4
+           -  lapack
+           -  blas
+      yum:
+         name: "{{ packagesRjags }}"
+         installroot: /cm/images/{{ images_name }}/
+         state: removed
