@@ -1,8 +1,2 @@
 [CM-Tools-Server]
 xspl11s949w.cm.cluster ansible_host=168.124.218.34
-[R-IDE-DEV] 
-sce-ide-dev-001.cm.cluster ansible_host=168.124.218.56
-[R-IDE-UAT] 
-sce-ide-uat-001.cm.cluster ansible_host=168.124.218.46
-[R-IDE-PROD] 
-sce-ide-001.cm.cluster ansible_host=168.124.218.22

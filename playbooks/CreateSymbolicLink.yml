@@ -72,3 +72,13 @@
         group: root
         state: link
         force: yes
+
+    - name:  Install - DEVOPS - WISE - Create Link jenkins
+      file:
+        src: /home/jenkins
+        dest: /cm/images/{{ images_name }}/var/lib/jenkins
+        backup: no
+        owner: root
+        group: root
+        state: link
+        force: yes

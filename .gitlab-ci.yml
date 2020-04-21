@@ -49,6 +49,7 @@ Software-Dist:
     - sudo ansible-playbook playbooks/UpdatePackage-Docker.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
     - sudo ansible-playbook playbooks/CopyFileDocker.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
     - sudo ansible-playbook playbooks/UpdatePackages-ide.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
+    - sudo ansible-playbook playbooks/CreateSymbolicLink.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
   when: manual
 
 
