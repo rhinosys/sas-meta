@@ -23,7 +23,7 @@ Software_Dist:
     - env
     - sudo ansible-playbook playbooks/DeletePackages.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
     - sudo ansible-playbook playbooks/DeletePackages-R.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
-    - sudo ansible-playbook playbooks/DeleteDocker.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
+    #- sudo ansible-playbook playbooks/DeleteDocker.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
     - sudo ansible-playbook playbooks/CleanFileDist.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
     - sudo ansible-playbook playbooks/DeleteSystemFile.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
 
@@ -49,7 +49,7 @@ Software-Dist:
     - sudo ansible-playbook playbooks/UpdatePackages.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
     - sudo ansible-playbook playbooks/UpdatePackages-R.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
     - sudo ansible-playbook playbooks/CopyFile-R.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
-    - sudo ansible-playbook playbooks/UpdatePackage-Docker.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
+    #- sudo ansible-playbook playbooks/UpdatePackage-Docker.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
     - sudo ansible-playbook playbooks/R-JavaConf.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
     - sudo ansible-playbook playbooks/CopyFileDocker.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
   #when: always
