@@ -4,22 +4,25 @@
   - env_variables
 
   tasks:
+    - name: "Chrrot on the images"
+      command: " chroot /cm/images/{{ images_name }}"
+
     - name: Remove Package lib postgresql
       yum:
         name: postgresql-libs
-        installroot: /cm/images/{{ images_name }}/
+        #installroot: /cm/images/{{ images_name }}/
         state: removed
 
     - name: Remove Package lib java-1.8.0-openjdk-devel
       yum:
         name: java-1.8.0-openjdk-devel
-        installroot: /cm/images/{{ images_name }}/
+        #installroot: /cm/images/{{ images_name }}/
         state: removed
         
     - name: Remove Package lib java-1.8.0-openjdk
       yum:
         name: java-1.8.0-openjdk
-        installroot: /cm/images/{{ images_name }}/
+        #installroot: /cm/images/{{ images_name }}/
         state: removed
 
     - name: Uninstall Rjags
@@ -31,5 +34,18 @@
            -  blas
       yum:
          name: "{{ packagesRjags }}"
-         installroot: /cm/images/{{ images_name }}/
+         #installroot: /cm/images/{{ images_name }}/
          state: removed
+
+    - name: Uninstall Cairo
+      vars:
+         packagesCairo:
+           -  cairo
+           -  cairo-gobject
+           -  cairo-devel
+    
+      yum:
+         name: "{{ packagesCairo }}"
+         #installroot: /cm/images/{{ images_name }}/
+         state: removed
+

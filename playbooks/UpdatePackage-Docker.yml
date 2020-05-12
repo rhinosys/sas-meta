@@ -4,16 +4,52 @@
   - env_variables
 
   tasks:
+
+    - name: "Chrrot on the images"
+      command: " chroot /cm/images/{{ images_name }}"
+
+
+    - name: Remove Certtificat 
+      yum:
+        name: katello-ca-consumer
+        state: removed
+
+    - name: "Install new Certificat"
+      yum:
+        name: "https://satellitelab.sanofi.com/pub/katello-ca-consumer-latest.noarch.rpm"
+        state: present
+  
+
+    - name: "Register the images"
+      command: "subscription-manager register --activationkey=ak_prod_rhel7 --org=SANOFI-ORG --force"
+
+    - name: "Add repository Docker"
+      command: "yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo"
+
+
+    - name: "Valiadated inside chroot"
+      command: "ls -alrt /cm"
+      register: InsideChroot
+    
+    - debug: msg="InsideChroot-> {{ InsideChroot }}"
+
+    - name: "Add containerd.io"
+      yum:
+        name: " https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm"
+        state: present
+
     - name: Install DOCKER
       vars:
         packages_docker:
-          - docker
-          - device-mapper-libs 
-          - device-mapper-event-libs
+          - docker-ce 
+          - docker-ce-cli 
+          - containerd.io 
 
       yum:
         name: "{{ packages_docker }}"
         #enablerepo: "{{ repos_docker_list }}"
-        enablerepo: rhel-7-server-rpms,rhel-7-server-extras-rpms,rhel-7-server-optional-rpms
-        installroot: /cm/images/{{ images_name }}/
-        state: latest
+        #enablerepo: rhel-7-server-rpms,rhel-7-server-extras-rpms,rhel-7-server-optional-rpms
+        #installroot: /cm/images/{{ images_name }}/
+        state: present
+
+

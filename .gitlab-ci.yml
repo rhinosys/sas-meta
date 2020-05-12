@@ -8,6 +8,7 @@ stages:
   #- ConfigImages
   - CopyIntoImages
 
+   
 Software_Dist:
   stage: CleanImages
   before_script:
@@ -25,10 +26,10 @@ Software_Dist:
     - sudo ansible-playbook playbooks/DeleteDocker.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
     - sudo ansible-playbook playbooks/CleanFileDist.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
     - sudo ansible-playbook playbooks/DeleteSystemFile.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
-    - sudo ansible-playbook playbooks/DeleteFileIde.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
+
     
     
-  when: manual
+  #when: always
 
 
 Software-Dist:
@@ -44,13 +45,14 @@ Software-Dist:
     - export
     - env
     - sudo ansible-playbook playbooks/CopySystemFile.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
+    - sudo ansible-playbook playbooks/RegsiterRepo.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
     - sudo ansible-playbook playbooks/UpdatePackages.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
     - sudo ansible-playbook playbooks/UpdatePackages-R.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
+    - sudo ansible-playbook playbooks/CopyFile-R.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
     - sudo ansible-playbook playbooks/UpdatePackage-Docker.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
+    - sudo ansible-playbook playbooks/R-JavaConf.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
     - sudo ansible-playbook playbooks/CopyFileDocker.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
-    - sudo ansible-playbook playbooks/UpdatePackages-ide.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
-    - sudo ansible-playbook playbooks/CreateSymbolicLink.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
-  when: manual
+  #when: always
 
 
 # Config_Images:
@@ -77,6 +79,7 @@ Add_File_Into_Images:
     - export DYNAMIC_ENV_VAR=DEV
   only:
     - master
+  #when: always
 
   tags:
     - master
@@ -87,6 +90,4 @@ Add_File_Into_Images:
     - echo running CI_INPUT_ZONEENV in $CI_INPUT_ZONEENV
     - sudo ansible-playbook playbooks/CopyFileRlocal.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
     - sudo ansible-playbook playbooks/CreateSymbolicLink.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
-    - sudo ansible-playbook playbooks/CopyFileIde.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
-  when: manual
   

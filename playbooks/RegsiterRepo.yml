@@ -1,0 +1,28 @@
+---
+- hosts: CM-Tools-Server 
+  vars_files:
+  - env_variables
+
+  tasks:
+
+
+    - name: "Chrrot on the images"
+      command: " chroot /cm/images/{{ images_name }}"
+
+
+    - name: Remove Certtificat 
+      yum:
+        name: katello-ca-consumer
+        state: removed
+
+    - name: "Install new Certificat"
+      yum:
+        name: "https://satellitelab.sanofi.com/pub/katello-ca-consumer-latest.noarch.rpm"
+        state: present
+  
+
+    - name: "Register the images"
+      command: "subscription-manager register --activationkey=ak_prod_rhel7 --org=SANOFI-ORG --force"
+
+
+

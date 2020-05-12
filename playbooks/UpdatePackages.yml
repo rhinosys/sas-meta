@@ -4,6 +4,39 @@
   - env_variables
 
   tasks:
+    #- name: "Chrrot on the images"
+    #  command: " chroot /cm/images/{{ images_name }}"
+
+    - name: Remove Certtificat 
+      yum:
+        name: katello-ca-consumer
+        state: removed
+
+    - name: "Install new Certificat"
+      yum:
+        name: "https://satellitelab.sanofi.com/pub/katello-ca-consumer-latest.noarch.rpm"
+        state: present
+  
+
+    - name: "Register the images"
+      command: "subscription-manager register --activationkey=ak_prod_rhel7 --org=SANOFI-ORG --force"
+
+    - name: " yum clean all"
+      command: " yum clean all"
+
+    - name: "subscription-manager status"
+      command: "subscription-manager status"
+      register: subscriptionStatus
+
+    - debug: msg="subscriptionStatus -> {{ subscriptionStatus.stdout }}"
+    - debug: msg="Image path-> /cm/images/{{ images_name }}"
+
+    - name: "Valiadated inside chroot"
+      command: "ls -alrt /cm"
+      register: InsideChroot
+    
+    - debug: msg="InsideChroot-> {{ InsideChroot }}"
+
     - name: Install package for postgresql
       vars:
         packages:
@@ -11,8 +44,8 @@
           - poppler.x86_64 
       yum:
         name: "{{ packages }}"
-        #disablerepo: "epel,ol7_latest"
-        installroot: /cm/images/{{ images_name }}/
+        #disablerepo: "docker-ce"
+        #installroot: /cm/images/{{ images_name }}/
 
     - name: Install package for magick
       vars:
@@ -20,8 +53,8 @@
           - ImageMagick-c++.x86_64
       yum:
         name: "{{ packages }}"
-        #disablerepo: "epel,ol7_latest"
-        installroot: /cm/images/{{ images_name }}/
+        #disablerepo: "docker-ce"
+        #installroot: /cm/images/{{ images_name }}/
   
     - name: Install package for java-1.8.0-openjdk
       vars:
@@ -29,7 +62,8 @@
           - java-1.8.0-openjdk
       yum:
         name: "{{ packages }}"
-        installroot: /cm/images/{{ images_name }}/
+        #disablerepo: "docker-ce"
+        #installroot: /cm/images/{{ images_name }}/
 
     - name: Install package for java-1.8.0-openjdk-devel
       vars:
@@ -37,7 +71,8 @@
           - java-1.8.0-openjdk-devel
       yum:
         name: "{{ packages }}"
-        installroot: /cm/images/{{ images_name }}/
+        #disablerepo: "docker-ce"
+        #installroot: /cm/images/{{ images_name }}/
 
     - name: Install package blas-3.4.2-8.el7.x86_64v
       vars:
@@ -45,7 +80,8 @@
           - blas-3.4.2-8.el7.x86_64
       yum:
         name: "{{ packages }}"
-        installroot: /cm/images/{{ images_name }}/
+        #disablerepo: "docker-ce"
+        #installroot: /cm/images/{{ images_name }}/
 
     - name: Install package lapack.x86_64
       vars:
@@ -53,7 +89,8 @@
           - lapack.x86_64
       yum:
         name: "{{ packages }}"
-        installroot: /cm/images/{{ images_name }}/    
+        #disablerepo: "docker-ce"
+        #installroot: /cm/images/{{ images_name }}/    
 
     - name: Install Rjags 
       vars:
@@ -62,7 +99,18 @@
            - /Sources/Software/Jags/jags4-devel-4.3.0-67.1.x86_64.rpm 
       yum:
          name: "{{ packagesRjags }}"
-         installroot: /cm/images/{{ images_name }}/
+         #disablerepo: "docker-ce"
+         #installroot: /cm/images/{{ images_name }}/
+
+    - name: Install cairo 
+      vars:
+         packagesCairo:
+           - cairo 
+      yum:
+         name: "{{ packagesCairo }}"
+         #disablerepo: "docker-ce"
+         #installroot: /cm/images/{{ images_name }}/
+
 
 
 

@@ -4,17 +4,26 @@
   - env_variables
 
   tasks:
+    - name: "Chrrot on the images"
+      command: " chroot /cm/images/{{ images_name }}"
+      
     - name: Remove Package Docker
       vars:
         packages_docker:
-          - docker-common-1.13.1-108.git4ef4b30.el7.x86_64
-          - docker-1.13.1-108.git4ef4b30.el7.x86_64
-          - docker-rhel-push-plugin-1.13.1-108.git4ef4b30.el7.x86_64
-          - docker-client-1.13.1-108.git4ef4b30.el7.x86_64
+          - docker
+          - docker-client 
+          - docker-client-latest 
+          - docker-common 
+          - docker-latest 
+          - docker-latest-logrotate 
+          - docker-logrotate 
+          - docker-engine
+
       yum:
         name: "{{ packages_docker }}"
-        installroot: /cm/images/{{ images_name }}/
+        #installroot: /cm/images/{{ images_name }}/
         state: removed
+
 
 
 

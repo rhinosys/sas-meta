@@ -13,16 +13,6 @@
         group: root
         mode: '0755'
 
-    - name: Install - Copy /etc/profile 
-      copy:
-        src: "{{ CI_PROJECT_DIR }}/src/etc/profile"
-        dest: /cm/images/{{ images_name }}/etc/profile
-        backup: no
-        owner: root
-        group: root
-        mode: '0755'
-    
-
     - name: Install - Create /etc/rc.d/rc.local
       copy:
         src: "{{ CI_PROJECT_DIR }}/src/etc/rc.local"

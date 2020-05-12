@@ -1,0 +1,80 @@
+---
+- hosts: CM-Tools-Server 
+  vars_files:
+  - env_variables
+
+  tasks:
+
+#####################################################################
+# Copie file
+#####################################################################
+
+    - name: Copy file /R/etc
+      copy:
+         src: "{{ CI_PROJECT_DIR }}/src/opt/Ropen/R/etc"
+         dest: /cm/images/{{ images_name }}/usr/lib64/microsoft-r/3.3/lib64/R
+         backup: yes
+         owner: root
+         group: root
+         mode: '0644'
+
+
+    - name: Copy file /R/etc
+      copy:
+         src: "{{ CI_PROJECT_DIR }}/src/opt/Ropen/R/etc"
+         dest: /cm/images/{{ images_name }}/usr/lib64/microsoft-r/3.4/lib64/R
+         backup: yes
+         owner: root
+         group: root
+         mode: '0644'
+
+
+
+    - name: Copy file /R/etc
+      copy:
+         src: "{{ CI_PROJECT_DIR }}/src/opt/Ropen/R/etc"
+         dest: /cm/images/{{ images_name }}/opt/microsoft/ropen/3.4.1/lib64/R
+         backup: yes
+         owner: root
+         group: root
+         mode: '0644'
+
+
+    - name: Copy file /R/etc
+      copy:
+         src: "{{ CI_PROJECT_DIR }}/src/opt/Ropen/R/etc"
+         dest: /cm/images/{{ images_name }}/opt/microsoft/ropen/3.4.2/lib64/R
+         backup: yes
+         owner: root
+         group: root
+         mode: '0644'
+
+
+    - name: Copy file /R/etc
+      copy:
+         src: "{{ CI_PROJECT_DIR }}/src/opt/Ropen/R/etc"
+         dest: /cm/images/{{ images_name }}/opt/microsoft/ropen/3.4.3/lib64/R
+         backup: yes
+         owner: root
+         group: root
+         mode: '0644'
+
+
+    - name: Copy file /R/etc
+      copy:
+         src: "{{ CI_PROJECT_DIR }}/src/opt/Ropen/R/etc"
+         dest: /cm/images/{{ images_name }}/opt/microsoft/ropen/3.5.1/lib64/R
+         backup: yes
+         owner: root
+         group: root
+         mode: '0644'
+
+
+    - name: Copy file /R/etc
+      copy:
+         src: "{{ CI_PROJECT_DIR }}/src/opt/Ropen/R/etc"
+         dest: /cm/images/{{ images_name }}/opt/microsoft/ropen/3.5.3/lib64/R
+         backup: yes
+         owner: root
+         group: root
+         mode: '0644'

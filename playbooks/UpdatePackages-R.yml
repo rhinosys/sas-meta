@@ -4,6 +4,10 @@
   - env_variables
 
   tasks:
+
+    - name: "Chrrot on the images"
+      command: " chroot /cm/images/{{ images_name }}"
+
     - name: Install R - WISE - 3.3.3
       vars:
         packages3_3_3:
@@ -12,16 +16,9 @@
           - /Sources/Software/Microsoft/Ropen/src/microsoft-r-open-3.3.3/microsoft-r-open/rpm/microsoft-r-open-mkl-3.3.rpm
       yum:
         name: "{{ packages3_3_3 }}"
-        installroot: /cm/images/{{ images_name }}/
+        #installroot: /cm/images/{{ images_name }}/
 
-    - name: Copy file /R/etc
-      copy:
-         src: "{{ CI_PROJECT_DIR }}/src/opt/Ropen/R/etc"
-         dest: /cm/images/{{ images_name }}/usr/lib64/microsoft-r/3.3/lib64/R
-         backup: yes
-         owner: root
-         group: root
-         mode: '0644'
+
 
     - name: Install R - WISE - 3.4.0
       vars:
@@ -31,16 +28,9 @@
           - /Sources/Software/Microsoft/Ropen/src/microsoft-r-open-3.4.0/microsoft-r-open/rpm/microsoft-r-open-mkl-3.4.rpm
       yum:
         name: "{{ packages3_4_0 }}"
-        installroot: /cm/images/{{ images_name }}/
+        #installroot: /cm/images/{{ images_name }}/
 
-    - name: Copy file /R/etc
-      copy:
-         src: "{{ CI_PROJECT_DIR }}/src/opt/Ropen/R/etc"
-         dest: /cm/images/{{ images_name }}/usr/lib64/microsoft-r/3.4/lib64/R
-         backup: yes
-         owner: root
-         group: root
-         mode: '0644'
+
 
     - name: Install R - WISE - 3.4.1
       vars:
@@ -50,16 +40,8 @@
           - /Sources/Software/Microsoft/Ropen/src/microsoft-r-open-3.4.1/microsoft-r-open/rpm/microsoft-r-open-mkl-3.4.1.rpm
       yum:
         name: "{{ packages3_4_1 }}"
-        installroot: /cm/images/{{ images_name }}/
+        #installroot: /cm/images/{{ images_name }}/
 
-    - name: Copy file /R/etc
-      copy:
-         src: "{{ CI_PROJECT_DIR }}/src/opt/Ropen/R/etc"
-         dest: /cm/images/{{ images_name }}/opt/microsoft/ropen/3.4.1/lib64/R
-         backup: yes
-         owner: root
-         group: root
-         mode: '0644'
 
     - name: Install R - WISE - 3.4.2
       vars:
@@ -69,16 +51,9 @@
           - /Sources/Software/Microsoft/Ropen/src/microsoft-r-open-3.4.2/microsoft-r-open/rpm/microsoft-r-open-mkl-3.4.2.rpm
       yum:
         name: "{{ packages3_4_2 }}"
-        installroot: /cm/images/{{ images_name }}/
+        #installroot: /cm/images/{{ images_name }}/
 
-    - name: Copy file /R/etc
-      copy:
-         src: "{{ CI_PROJECT_DIR }}/src/opt/Ropen/R/etc"
-         dest: /cm/images/{{ images_name }}/opt/microsoft/ropen/3.4.2/lib64/R
-         backup: yes
-         owner: root
-         group: root
-         mode: '0644'
+
 
     - name: Install R - WISE - 3.4.3
       vars:
@@ -88,16 +63,9 @@
           - /Sources/Software/Microsoft/Ropen/src/microsoft-r-open-3.4.3/microsoft-r-open/rpm/microsoft-r-open-mkl-3.4.3.rpm
       yum:
         name: "{{ packages3_4_3 }}"
-        installroot: /cm/images/{{ images_name }}/
+        #installroot: /cm/images/{{ images_name }}/
   
-    - name: Copy file /R/etc
-      copy:
-         src: "{{ CI_PROJECT_DIR }}/src/opt/Ropen/R/etc"
-         dest: /cm/images/{{ images_name }}/opt/microsoft/ropen/3.4.3/lib64/R
-         backup: yes
-         owner: root
-         group: root
-         mode: '0644'
+
 
 
     - name: Install R - WISE - 3.5.1
@@ -108,16 +76,9 @@
           - /Sources/Software/Microsoft/Ropen/src/microsoft-r-open-3.5.1/microsoft-r-open/rpm/microsoft-r-open-mkl-3.5.1.rpm
       yum:
         name: "{{ packages3_5_1 }}"
-        installroot: /cm/images/{{ images_name }}/
+        #installroot: /cm/images/{{ images_name }}/
   
-    - name: Copy file /R/etc
-      copy:
-         src: "{{ CI_PROJECT_DIR }}/src/opt/Ropen/R/etc"
-         dest: /cm/images/{{ images_name }}/opt/microsoft/ropen/3.5.1/lib64/R
-         backup: yes
-         owner: root
-         group: root
-         mode: '0644'
+
 
     - name: Install R - WISE - 3.5.3
       vars:
@@ -126,13 +87,8 @@
           - /Sources/Software/Microsoft/Ropen/src/microsoft-r-open-3.5.3/microsoft-r-open/rpm/rhel/microsoft-r-open-mkl-3.5.3.rpm
       yum:
         name: "{{ packages3_5_3 }}"
-        installroot: /cm/images/{{ images_name }}/
-      
-    - name: Copy file /R/etc
-      copy:
-         src: "{{ CI_PROJECT_DIR }}/src/opt/Ropen/R/etc"
-         dest: /cm/images/{{ images_name }}/opt/microsoft/ropen/3.5.3/lib64/R
-         backup: yes
-         owner: root
-         group: root
-         mode: '0644'
+        #installroot: /cm/images/{{ images_name }}/
+
+
+
+

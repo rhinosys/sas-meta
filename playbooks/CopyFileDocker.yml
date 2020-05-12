@@ -36,6 +36,12 @@
          group: root
          mode: '0644'
 
-
-
+    - name: Copy file /cm/images/{{ images_name }}/src/etc/docker/daemon.json - Copy file -
+      copy:
+         src: "{{ CI_PROJECT_DIR }}/src/etc/docker/daemon.json"
+         dest: /cm/images/{{ images_name }}/etc/docker/daemon.json
+         backup: no
+         owner: root
+         group: root
+         mode: '0644'
 
