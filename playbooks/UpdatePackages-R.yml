@@ -5,7 +5,7 @@
 
   tasks:
     - name: "Chrrot on the images"
-      command: " chroot /cm/images/{{ images_name }}"
+      command: "/usr/sbin/chroot /cm/images/{{ images_name }}"
 
     - name: Remove Certtificat 
       yum:
@@ -48,7 +48,7 @@
           - http://gitwise.pharma.aventis.com/R-PACKAGE/ropensrc/raw/master/microsoft-r-open-3.3.3/microsoft-r-open/rpm/microsoft-r-open-mkl-3.3.rpm
       yum:
         name: "{{ packages3_3_3 }}"
-        installroot: /cm/images/{{ images_name }}/
+        #installroot: /cm/images/{{ images_name }}/
 
 
 
@@ -60,7 +60,7 @@
           - http://gitwise.pharma.aventis.com/R-PACKAGE/ropensrc/raw/master/microsoft-r-open-3.4.0/microsoft-r-open/rpm/microsoft-r-open-mkl-3.4.rpm
       yum:
         name: "{{ packages3_4_0 }}"
-        installroot: /cm/images/{{ images_name }}/
+        #installroot: /cm/images/{{ images_name }}/
 
 
 
@@ -72,7 +72,7 @@
           - http://gitwise.pharma.aventis.com/R-PACKAGE/ropensrc/raw/master/microsoft-r-open-3.4.1/microsoft-r-open/rpm/microsoft-r-open-mkl-3.4.1.rpm
       yum:
         name: "{{ packages3_4_1 }}"
-        installroot: /cm/images/{{ images_name }}/
+        #installroot: /cm/images/{{ images_name }}/
 
 
     - name: Install R - WISE - 3.4.2
@@ -83,7 +83,7 @@
           - http://gitwise.pharma.aventis.com/R-PACKAGE/ropensrc/raw/master/microsoft-r-open-3.4.2/microsoft-r-open/rpm/microsoft-r-open-mkl-3.4.2.rpm
       yum:
         name: "{{ packages3_4_2 }}"
-        installroot: /cm/images/{{ images_name }}/
+        #installroot: /cm/images/{{ images_name }}/
 
 
 
@@ -95,7 +95,7 @@
           - http://gitwise.pharma.aventis.com/R-PACKAGE/ropensrc/raw/master/microsoft-r-open-3.4.3/microsoft-r-open/rpm/microsoft-r-open-mkl-3.4.3.rpm
       yum:
         name: "{{ packages3_4_3 }}"
-        installroot: /cm/images/{{ images_name }}/
+        #installroot: /cm/images/{{ images_name }}/
   
 
 
@@ -108,7 +108,7 @@
           - http://gitwise.pharma.aventis.com/R-PACKAGE/ropensrc/raw/master/microsoft-r-open-3.5.1/microsoft-r-open/rpm/microsoft-r-open-mkl-3.5.1.rpm
       yum:
         name: "{{ packages3_5_1 }}"
-        installroot: /cm/images/{{ images_name }}/
+        #installroot: /cm/images/{{ images_name }}/
   
 
 
@@ -119,7 +119,7 @@
           - http://gitwise.pharma.aventis.com/R-PACKAGE/ropensrc/raw/master/microsoft-r-open-3.5.3/microsoft-r-open/rpm/rhel/microsoft-r-open-mkl-3.5.3.rpm
       yum:
         name: "{{ packages3_5_3 }}"
-        installroot: /cm/images/{{ images_name }}/
+        #installroot: /cm/images/{{ images_name }}/
 
 
 
