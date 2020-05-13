@@ -4,13 +4,48 @@
   - env_variables
 
   tasks:
+    - name: "Chrrot on the images"
+      command: " chroot /cm/images/{{ images_name }}"
+
+    - name: Remove Certtificat 
+      yum:
+        name: katello-ca-consumer
+        state: removed
+
+    - name: "Install new Certificat"
+      yum:
+        name: "https://satellitelab.sanofi.com/pub/katello-ca-consumer-latest.noarch.rpm"
+        state: present
+  
+
+    - name: "Register the images"
+      command: "subscription-manager register --activationkey=ak_prod_rhel7 --org=SANOFI-ORG --force"
+
+    - name: " yum clean all"
+      command: " yum clean all"
+
+    - name: "subscription-manager status"
+      command: "subscription-manager status"
+      register: subscriptionStatus
+
+    - debug: msg="subscriptionStatus -> {{ subscriptionStatus.stdout }}"
+    - debug: msg="Image path-> /cm/images/{{ images_name }}"
+
+    - name: "Valiadated inside chroot"
+      command: "ls -alrt /cm"
+      register: InsideChroot
+    
+    - debug: msg="InsideChroot-> {{ InsideChroot }}"
+
+
+
 
     - name: Install R - WISE - 3.3.3
       vars:
         packages3_3_3:
-          - /Sources/Software/Microsoft/Ropen/src/microsoft-r-open-3.3.3/microsoft-r-open/rpm/microsoft-r-open-mro-3.3.rpm
-          - /Sources/Software/Microsoft/Ropen/src/microsoft-r-open-3.3.3/microsoft-r-open/rpm/microsoft-r-open-foreachiterators-3.3.rpm
-          - /Sources/Software/Microsoft/Ropen/src/microsoft-r-open-3.3.3/microsoft-r-open/rpm/microsoft-r-open-mkl-3.3.rpm
+          - http://gitwise.pharma.aventis.com/R-PACKAGE/ropensrc/raw/master/microsoft-r-open-3.3.3/microsoft-r-open/rpm/microsoft-r-open-mro-3.3.rpm
+          - http://gitwise.pharma.aventis.com/R-PACKAGE/ropensrc/raw/master/microsoft-r-open-3.3.3/microsoft-r-open/rpm/microsoft-r-open-foreachiterators-3.3.rpm
+          - http://gitwise.pharma.aventis.com/R-PACKAGE/ropensrc/raw/master/microsoft-r-open-3.3.3/microsoft-r-open/rpm/microsoft-r-open-mkl-3.3.rpm
       yum:
         name: "{{ packages3_3_3 }}"
         installroot: /cm/images/{{ images_name }}/
@@ -20,9 +55,9 @@
     - name: Install R - WISE - 3.4.0
       vars:
         packages3_4_0:
-          - /Sources/Software/Microsoft/Ropen/src/microsoft-r-open-3.4.0/microsoft-r-open/rpm/microsoft-r-open-mro-3.4.rpm
-          - /Sources/Software/Microsoft/Ropen/src/microsoft-r-open-3.4.0/microsoft-r-open/rpm/microsoft-r-open-foreachiterators-3.4.rpm
-          - /Sources/Software/Microsoft/Ropen/src/microsoft-r-open-3.4.0/microsoft-r-open/rpm/microsoft-r-open-mkl-3.4.rpm
+          - http://gitwise.pharma.aventis.com/R-PACKAGE/ropensrc/raw/master/microsoft-r-open-3.4.0/microsoft-r-open/rpm/microsoft-r-open-mro-3.4.rpm
+          - http://gitwise.pharma.aventis.com/R-PACKAGE/ropensrc/raw/master/microsoft-r-open-3.4.0/microsoft-r-open/rpm/microsoft-r-open-foreachiterators-3.4.rpm
+          - http://gitwise.pharma.aventis.com/R-PACKAGE/ropensrc/raw/master/microsoft-r-open-3.4.0/microsoft-r-open/rpm/microsoft-r-open-mkl-3.4.rpm
       yum:
         name: "{{ packages3_4_0 }}"
         installroot: /cm/images/{{ images_name }}/
@@ -32,9 +67,9 @@
     - name: Install R - WISE - 3.4.1
       vars:
         packages3_4_1:
-          - /Sources/Software/Microsoft/Ropen/src/microsoft-r-open-3.4.1/microsoft-r-open/rpm/microsoft-r-open-mro-3.4.1.rpm
-          - /Sources/Software/Microsoft/Ropen/src/microsoft-r-open-3.4.1/microsoft-r-open/rpm/microsoft-r-open-foreachiterators-3.4.1.rpm
-          - /Sources/Software/Microsoft/Ropen/src/microsoft-r-open-3.4.1/microsoft-r-open/rpm/microsoft-r-open-mkl-3.4.1.rpm
+          - http://gitwise.pharma.aventis.com/R-PACKAGE/ropensrc/raw/master/microsoft-r-open-3.4.1/microsoft-r-open/rpm/microsoft-r-open-mro-3.4.1.rpm
+          - http://gitwise.pharma.aventis.com/R-PACKAGE/ropensrc/raw/master/microsoft-r-open-3.4.1/microsoft-r-open/rpm/microsoft-r-open-foreachiterators-3.4.1.rpm
+          - http://gitwise.pharma.aventis.com/R-PACKAGE/ropensrc/raw/master/microsoft-r-open-3.4.1/microsoft-r-open/rpm/microsoft-r-open-mkl-3.4.1.rpm
       yum:
         name: "{{ packages3_4_1 }}"
         installroot: /cm/images/{{ images_name }}/
@@ -43,9 +78,9 @@
     - name: Install R - WISE - 3.4.2
       vars:
         packages3_4_2:
-          - /Sources/Software/Microsoft/Ropen/src/microsoft-r-open-3.4.2/microsoft-r-open/rpm/microsoft-r-open-mro-3.4.2.rpm
-          - /Sources/Software/Microsoft/Ropen/src/microsoft-r-open-3.4.2/microsoft-r-open/rpm/microsoft-r-open-foreachiterators-3.4.2.rpm
-          - /Sources/Software/Microsoft/Ropen/src/microsoft-r-open-3.4.2/microsoft-r-open/rpm/microsoft-r-open-mkl-3.4.2.rpm
+          - http://gitwise.pharma.aventis.com/R-PACKAGE/ropensrc/raw/master/microsoft-r-open-3.4.2/microsoft-r-open/rpm/microsoft-r-open-mro-3.4.2.rpm
+          - http://gitwise.pharma.aventis.com/R-PACKAGE/ropensrc/raw/master/microsoft-r-open-3.4.2/microsoft-r-open/rpm/microsoft-r-open-foreachiterators-3.4.2.rpm
+          - http://gitwise.pharma.aventis.com/R-PACKAGE/ropensrc/raw/master/microsoft-r-open-3.4.2/microsoft-r-open/rpm/microsoft-r-open-mkl-3.4.2.rpm
       yum:
         name: "{{ packages3_4_2 }}"
         installroot: /cm/images/{{ images_name }}/
@@ -55,9 +90,9 @@
     - name: Install R - WISE - 3.4.3
       vars:
         packages3_4_3:
-          - /Sources/Software/Microsoft/Ropen/src/microsoft-r-open-3.4.3/microsoft-r-open/rpm/microsoft-r-open-mro-3.4.3.rpm
-          - /Sources/Software/Microsoft/Ropen/src/microsoft-r-open-3.4.3/microsoft-r-open/rpm/microsoft-r-open-foreachiterators-3.4.3.rpm
-          - /Sources/Software/Microsoft/Ropen/src/microsoft-r-open-3.4.3/microsoft-r-open/rpm/microsoft-r-open-mkl-3.4.3.rpm
+          - http://gitwise.pharma.aventis.com/R-PACKAGE/ropensrc/raw/master/microsoft-r-open-3.4.3/microsoft-r-open/rpm/microsoft-r-open-mro-3.4.3.rpm
+          - http://gitwise.pharma.aventis.com/R-PACKAGE/ropensrc/raw/master/microsoft-r-open-3.4.3/microsoft-r-open/rpm/microsoft-r-open-foreachiterators-3.4.3.rpm
+          - http://gitwise.pharma.aventis.com/R-PACKAGE/ropensrc/raw/master/microsoft-r-open-3.4.3/microsoft-r-open/rpm/microsoft-r-open-mkl-3.4.3.rpm
       yum:
         name: "{{ packages3_4_3 }}"
         installroot: /cm/images/{{ images_name }}/
@@ -68,9 +103,9 @@
     - name: Install R - WISE - 3.5.1
       vars:
         packages3_5_1:
-          - /Sources/Software/Microsoft/Ropen/src/microsoft-r-open-3.5.1/microsoft-r-open/rpm/microsoft-r-open-mro-3.5.1.rpm
-          - /Sources/Software/Microsoft/Ropen/src/microsoft-r-open-3.5.1/microsoft-r-open/rpm/microsoft-r-open-foreachiterators-3.5.1.rpm
-          - /Sources/Software/Microsoft/Ropen/src/microsoft-r-open-3.5.1/microsoft-r-open/rpm/microsoft-r-open-mkl-3.5.1.rpm
+          - http://gitwise.pharma.aventis.com/R-PACKAGE/ropensrc/raw/master/microsoft-r-open-3.5.1/microsoft-r-open/rpm/microsoft-r-open-mro-3.5.1.rpm
+          - http://gitwise.pharma.aventis.com/R-PACKAGE/ropensrc/raw/master/microsoft-r-open-3.5.1/microsoft-r-open/rpm/microsoft-r-open-foreachiterators-3.5.1.rpm
+          - http://gitwise.pharma.aventis.com/R-PACKAGE/ropensrc/raw/master/microsoft-r-open-3.5.1/microsoft-r-open/rpm/microsoft-r-open-mkl-3.5.1.rpm
       yum:
         name: "{{ packages3_5_1 }}"
         installroot: /cm/images/{{ images_name }}/
@@ -80,8 +115,8 @@
     - name: Install R - WISE - 3.5.3
       vars:
         packages3_5_3:
-          - /Sources/Software/Microsoft/Ropen/src/microsoft-r-open-3.5.3/microsoft-r-open/rpm/rhel/microsoft-r-open-mro-3.5.3.rpm
-          - /Sources/Software/Microsoft/Ropen/src/microsoft-r-open-3.5.3/microsoft-r-open/rpm/rhel/microsoft-r-open-mkl-3.5.3.rpm
+          - http://gitwise.pharma.aventis.com/R-PACKAGE/ropensrc/raw/master/microsoft-r-open-3.5.3/microsoft-r-open/rpm/rhel/microsoft-r-open-mro-3.5.3.rpm
+          - http://gitwise.pharma.aventis.com/R-PACKAGE/ropensrc/raw/master/microsoft-r-open-3.5.3/microsoft-r-open/rpm/rhel/microsoft-r-open-mkl-3.5.3.rpm
       yum:
         name: "{{ packages3_5_3 }}"
         installroot: /cm/images/{{ images_name }}/
