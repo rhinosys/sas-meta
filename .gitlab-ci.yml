@@ -51,7 +51,7 @@ Software-Dist:
     - sudo ansible-playbook playbooks/CopyFile-R.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
     #- sudo ansible-playbook playbooks/UpdatePackage-Docker.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
     - sudo ansible-playbook playbooks/R-JavaConf.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
-    - sudo ansible-playbook playbooks/CopyFileDocker.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
+    #- sudo ansible-playbook playbooks/CopyFileDocker.yml --extra-vars "ENV=$CI_INPUT_ZONEENV CI_PROJECT_DIR=$CI_PROJECT_DIR"
   #when: always
 
 
