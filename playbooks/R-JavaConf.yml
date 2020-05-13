@@ -4,6 +4,13 @@
   - env_variables
 
   tasks:
+
+    - name: "Valiadated inside chroot"
+      command: "ls -alrt /cm"
+      register: InsideChroot
+    
+    - debug: msg="InsideChroot-> {{ InsideChroot }}"
+    
     - name: "JavaUpdateConf - R - WISE - 3.3.3"
       vars: 
         javareconf_3_3_3: /usr/lib64/microsoft-r/3.3/lib64/R/bin/R CMD javareconf
