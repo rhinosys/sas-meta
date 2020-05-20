@@ -37,7 +37,7 @@
     
     - debug: msg="InsideChroot-> {{ InsideChroot }}"
 
-   - name: Download jenkins.repo
+    - name: Download jenkins.repo
       get_url:
         url: http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo
         dest: /etc/yum.repos.d/jenkins.repo
