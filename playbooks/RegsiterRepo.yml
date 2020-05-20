@@ -22,7 +22,7 @@
   
 
     - name: "Register the images"
-      command: "{{ register-cmd }}""
+      command: "{{ register-cmd }}"
 
 
 
