@@ -11,17 +11,17 @@
 
     - name: Remove Certtificat 
       yum:
-        name: katello-ca-consumer
+        name: katello-ca-consumer-*
         state: removed
 
     - name: "Install new Certificat"
       yum:
-        name: {{ katello-url }}
+        name: "{{ katelloUrl }}"
         state: present
   
 
     - name: "Register the images"
-      command: {{ register-cmd }}
+      command: "{{ registerCmd }}"
 
     - name: "Add repository Docker"
       command: "yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo"

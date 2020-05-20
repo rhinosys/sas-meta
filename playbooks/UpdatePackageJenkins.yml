@@ -4,22 +4,22 @@
   - env_variables
 
   tasks:
-    #- name: "Chrrot on the images"
-    #  command: " chroot /cm/images/{{ images_name }}"
+    - name: "Chrrot on the images"
+      command: " chroot /cm/images/{{ images_name }}"
 
     - name: Remove Certtificat 
       yum:
-        name: katello-ca-consumer
+        name: katello-ca-consumer-*
         state: removed
 
     - name: "Install new Certificat"
       yum:
-        name: {{ katello-url }}
+        name: "{{ katelloUrl }}"
         state: present
   
 
     - name: "Register the images"
-      command: {{ register-cmd }}
+      command: "{{ registerCmd }}"
 
     - name: " yum clean all"
       command: " yum clean all"

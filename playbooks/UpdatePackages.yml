@@ -9,17 +9,17 @@
 
     - name: Remove Certtificat 
       yum:
-        name: katello-ca-consumer
+        name: katello-ca-consumer-*
         state: removed
 
     - name: "Install new Certificat"
       yum:
-        name: {{ katellourl }}
+        name: "{{ katelloUrl }}"
         state: present
   
 
     - name: "Register the images"
-      command: {{ registercmd }}
+      command: "{{ registerCmd }}"
 
     - name: " yum clean all"
       command: " yum clean all"
