@@ -24,6 +24,12 @@
         name: java-1.8.0-openjdk
         #installroot: /cm/images/{{ images_name }}/
         state: removed
+        
+    - name: Remove Package katello-ca-consumer
+      yum:
+        name: katello-ca-consumer
+        #installroot: /cm/images/{{ images_name }}/
+        state: removed
 
     - name: Uninstall Rjags
       vars:
