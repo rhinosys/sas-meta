@@ -16,12 +16,12 @@
 
     - name: "Install new Certificat"
       yum:
-        name: "https://satellitelab.sanofi.com/pub/katello-ca-consumer-latest.noarch.rpm"
+        name: {{katello-url}}
         state: present
   
 
     - name: "Register the images"
-      command: "subscription-manager register --activationkey=ak_prod_rhel7 --org=SANOFI-ORG --force"
+      command: {{register-cmd}}
 
     - name: "Add repository Docker"
       command: "yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo"

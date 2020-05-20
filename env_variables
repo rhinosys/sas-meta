@@ -3,4 +3,6 @@
 ###################################################################################
 # Dont Edit these below values, 
 images_name: IMG_DEVOPS_V.1.1.0
+katello-url: "https://emea-sat-capsule.sanofi.com/pub/katello-ca-consumer-latest.noarch.rpm"
+register-cmd: "subscription-manager register --activationkey=ak_prod_rhel7 --org=SANOFI-ORG --force"
 ###################################################################################
