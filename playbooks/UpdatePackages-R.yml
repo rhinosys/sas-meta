@@ -14,7 +14,7 @@
 
     - name: "Install new Certificat"
       yum:
-        name: "https://satellitelab.sanofi.com/pub/katello-ca-consumer-latest.noarch.rpm"
+        name: "https://emea-sat-capsule.sanofi.com/pub/katello-ca-consumer-latest.noarch.rpm"
         state: present
   
 
