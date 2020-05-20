@@ -28,7 +28,3 @@
    
     - name: "Register the images"
       command: "{{ registerCmd }}"
-
-
-
-
