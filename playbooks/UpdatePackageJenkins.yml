@@ -17,7 +17,6 @@
         name: "https://emea-sat-capsule.sanofi.com/pub/katello-ca-consumer-latest.noarch.rpm"
         state: present
   
-
     - name: "Register the images"
       command: "subscription-manager register --activationkey=ak_prod_rhel7 --org=SANOFI-ORG --force"
 
