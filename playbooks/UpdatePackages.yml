@@ -14,12 +14,12 @@
 
     - name: "Install new Certificat"
       yum:
-        name: {{ katello-url }}
+        name: {{ katellourl }}
         state: present
   
 
     - name: "Register the images"
-      command: {{ register-cmd }}
+      command: {{ registercmd }}
 
     - name: " yum clean all"
       command: " yum clean all"
