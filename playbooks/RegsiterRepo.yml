@@ -17,12 +17,12 @@
 
     - name: "Install new Certificat"
       yum:
-        name: "{{ katello-url }}"
+        name: "{{ katelloUrl }}"
         state: present
   
 
     - name: "Register the images"
-      command: "{{ register-cmd }}"
+      command: "{{ registerCmd }}"
 
 
 
