@@ -16,12 +16,12 @@
 
     - name: "Install new Certificat"
       yum:
-        name: {{katello-url}}
+        name: {{ katello-url }}
         state: present
   
 
     - name: "Register the images"
-      command: {{register-cmd}}
+      command: {{ register-cmd }}
 
     - name: "Add repository Docker"
       command: "yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo"
