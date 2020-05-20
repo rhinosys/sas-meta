@@ -4,6 +4,9 @@
   - env_variables
 
   tasks:
+  
+    - name: "Chrrot on the images"
+      command: " chroot /cm/images/{{ images_name }}"
 
     - name: "Valiadated inside chroot"
       command: "ls -alrt /cm"
