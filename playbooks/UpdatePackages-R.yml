@@ -5,7 +5,7 @@
 
   tasks:
     - name: "Chrrot on the images"
-      command: "/usr/sbin/chroot /cm/images/{{ images_name }}"
+      command: " chroot /cm/images/{{ images_name }}"
 
     - name: Remove Certtificat 
       yum:
@@ -17,7 +17,6 @@
         name: "{{ katelloUrl }}"
         state: present
   
-
     - name: "Register the images"
       command: "{{ registerCmd }}"
 
