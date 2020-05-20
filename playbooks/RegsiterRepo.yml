@@ -28,7 +28,6 @@
     
     - debug: msg="InsideChroot-> {{ InsideChroot }}"
 
-    - name: "Add containerd.io"
 
 
   
