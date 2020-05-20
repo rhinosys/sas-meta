@@ -17,7 +17,6 @@
         name: "{{ katelloUrl }}"
         state: present
   
-
     - name: "Register the images"
       command: "{{ registerCmd }}"
 
