@@ -12,7 +12,7 @@
 
     - name: Remove Certtificat 
       yum:
-        name: katello-ca-consumer
+        name: katello-ca-consumer-*
         state: removed
 
     - name: "Install new Certificat"
