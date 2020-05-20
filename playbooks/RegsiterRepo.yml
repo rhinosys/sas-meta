@@ -21,7 +21,6 @@
         state: present
         
     
-    
     - name: "Valiadated inside chroot"
       command: "ls -alrt /cm"
       register: InsideChroot
