@@ -26,12 +26,7 @@
       command: "ls -alrt /cm"
       register: InsideChroot
     
-    - debug: msg="InsideChroot-> {{ InsideChroot }}"
-
-
-
-  
-
+   
     - name: "Register the images"
       command: "{{ registerCmd }}"
 
