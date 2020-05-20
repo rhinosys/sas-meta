@@ -10,7 +10,7 @@
       command: " chroot /cm/images/{{ images_name }}"
 
 
-    - name: Remove Certtificat 
+    - name: "Remove Certtificat" 
       yum:
         name: katello-ca-consumer-*
         state: removed
