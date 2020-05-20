@@ -14,24 +14,24 @@
     
     - debug: msg="InsideChroot-> {{ InsideChroot }}"
     
-   # - name: "JavaUpdateConf - R - WISE - 3.3.3"
-#      vars: 
-#        javareconf_3_3_3: /usr/lib64/microsoft-r/3.3/lib64/R/bin/R CMD javareconf
- #      environment:
- #        PATH: "/cm/images/{{ images_name }}/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.141-1.b16.el7_3.x86_64/jre/bin:{{ ansible_env.PATH }}" 
- #        JAVA_HOME: /cm/images/{{ images_name }}/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.141-1.b16.el7_3.x86_64
- #        LD_LIBRARY_PATH: /cm/images/{{ images_name }} /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.141-1.b16.el7_3.x86_64/lib:{{ ansible_env.LD_LIBRARY_PATH}}
- #      command: " /cm/images/{{ images_name }}{{ javareconf_3_3_3 }}"
+    - name: "JavaUpdateConf - R - WISE - 3.3.3"
+      vars: 
+        javareconf_3_3_3: /usr/lib64/microsoft-r/3.3/lib64/R/bin/R CMD javareconf
+       environment:
+         PATH: "/cm/images/{{ images_name }}/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.141-1.b16.el7_3.x86_64/jre/bin:{{ ansible_env.PATH }}" 
+         JAVA_HOME: /cm/images/{{ images_name }}/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.141-1.b16.el7_3.x86_64
+         LD_LIBRARY_PATH: /cm/images/{{ images_name }} /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.141-1.b16.el7_3.x86_64/lib:{{ ansible_env.LD_LIBRARY_PATH}}
+       command: " /cm/images/{{ images_name }}{{ javareconf_3_3_3 }}"
         
 
- #    - name: "JavaUpdateConf - R - WISE - 3.4.0"
- #      vars: 
- #        javareconf_3_4_0: /usr/lib64/microsoft-r/3.4/lib64/R/bin/R CMD javareconf
- #      environment: 
- #        PATH: "/cm/images/{{ images_name }}/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.141-1.b16.el7_3.x86_64/jre/bin:{{ ansible_env.PATH }}"
- #        JAVA_HOME: /cm/images/{{ images_name }}/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.141-1.b16.el7_3.x86_64
- #        LD_LIBRARY_PATH: /cm/images/{{ images_name }} /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.141-1.b16.el7_3.x86_64/lib:{{ ansible_env.LD_LIBRARY_PATH}} 
-    #  command: " /cm/images/{{ images_name }}{{ javareconf_3_4_0 }}"
+    - name: "JavaUpdateConf - R - WISE - 3.4.0"
+       vars: 
+         javareconf_3_4_0: /usr/lib64/microsoft-r/3.4/lib64/R/bin/R CMD javareconf
+       environment: 
+         PATH: "/cm/images/{{ images_name }}/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.141-1.b16.el7_3.x86_64/jre/bin:{{ ansible_env.PATH }}"
+         JAVA_HOME: /cm/images/{{ images_name }}/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.141-1.b16.el7_3.x86_64
+         LD_LIBRARY_PATH: /cm/images/{{ images_name }} /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.141-1.b16.el7_3.x86_64/lib:{{ ansible_env.LD_LIBRARY_PATH}} 
+      command: " /cm/images/{{ images_name }}{{ javareconf_3_4_0 }}"
     
     - name: "JavaUpdateConf - R - WISE - 3.4.1"
       vars: 
